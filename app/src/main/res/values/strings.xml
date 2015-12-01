@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_register_form">회원 가입</string>
+    <string name="register_form_user_name_hint">이름 (홍길동)</string>
+    <string name="register_form_user_email_hint">이메일 (example@google.com)</string>
+    <string name="register_form_user_password_hint">비밀번호 (8자 이상)</string>
+    <string name="register_form_ok">회원 가입</string>
+    <string name="register_form_agreement_message">가입과 동시에 약관에 동의하신 것으로 간주합니다.</string>
+    <string name="register_form_show_agreement">약관 보기</string>
 </resources>
