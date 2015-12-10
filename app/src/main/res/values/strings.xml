@@ -15,4 +15,7 @@
     <string name="login_email_btn">이메일로 로그인</string>
     <string name="login_user_email_hint">이메일 (example@google.com)</string>
     <string name="login_user_password_hint">비밀번호</string>
+    <string name="add_travel_options_info1">해당하는 사항을 선택해주시면 포함하여</string>
+    <string name="add_travel_options_info2">절차 및 경로를 안내해드립니다</string>
+    <string name="title_activity_add_travel_options">추가 선택 사항</string>
 </resources>
