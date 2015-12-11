@@ -10,6 +10,9 @@
     <TextView
         android:id="@+id/language_setting_tv"
         android:layout_width="wrap_content"
+        android:layout_height="18dp"/>
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_language_setting"
         android:textColor="#FFFFFF"
@@ -52,5 +55,4 @@
         android:layout_marginBottom="18dp"
         android:src="@drawable/login"
         android:layout_centerHorizontal="true"/>
-
 </RelativeLayout>
