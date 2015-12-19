@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="kr.co.airbridge.airable.RegisterActivity"
     tools:ignore="ContentDescription"
-    android:background="@color/colorAccent">
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"/>
+    android:background="@drawable/sky_bg">
+
     <TextView
+        android:id="@+id/language_setting_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_language_setting"
         android:textColor="#FFFFFF"
-        android:layout_gravity="end"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
         android:layout_marginRight="14dp" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_spash_2"
-        android:layout_gravity="center"/>
     <LinearLayout
+        android:id="@+id/bottom_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="55.5dp"
         android:orientation="horizontal"
         android:weightSum="2"
-        android:layout_gravity="bottom">
+        android:layout_alignParentBottom="true">
         <ImageView
+            android:id="@+id/register_email_btn"
             android:layout_weight="1"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@drawable/email_btn"/>
-        <ImageView
+        <ImageButton
+            android:id="@+id/register_facebook_btn"
             android:layout_weight="1"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@drawable/fb_btn"/>
     </LinearLayout>
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/language_setting_tv"
+        android:layout_above="@id/bottom_linear_layout"
+        android:src="@drawable/logo_splash2"
+        android:layout_centerInParent="true"/>
+    <ImageView
+        android:id="@+id/login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_linear_layout"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/login"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
