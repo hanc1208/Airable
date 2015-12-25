@@ -6,3 +6,10 @@
 /build
 /captures
 *.iml
+.idea/encodings.xml
+.idea/vcs.xml
+.idea/runConfigurations.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/gradle.xml
+.idea/compiler.xml
