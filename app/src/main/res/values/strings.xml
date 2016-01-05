@@ -20,4 +20,18 @@
     <string name="title_activity_add_travel_options">추가 선택 사항</string>
     <string name="register_language_setting">언어설정</string>
     <string name="title_activity_register">회원가입</string>
+    <string name="shop_name">STORE NAME</string>
+    <string name="shop_detail_location">위치</string>
+    <string name="shop_detail_time">운영시간</string>
+    <string name="shop_detail_default_location">가게 위치\n들어갈 자리</string>
+    <string name="shop_detail_default_time">00 : 00 ~ 00 : 00</string>
+    <string name="shop_detail_default_info">가게 설명\n들어갈\n자리</string>
+    <string name="shop_detail_mark">경로에 찜하기</string>
+    <string name="shop_detail_call">전화 걸기</string>
+    <string name="popup_window_mark">찜 하시겠습니까?</string>
+    <string name="popup_window_yes">확인</string>
+    <string name="popup_window_cancel">취소</string>
+    <string name="popup_window_call_number">031-123-4567</string>
+    <string name="popup_window_call">전화 연결 하시겠습니까?</string>
+    <string name="popup_window_call_yes">연결</string>
 </resources>
