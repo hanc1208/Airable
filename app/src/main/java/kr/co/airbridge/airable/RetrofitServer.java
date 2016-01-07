@@ -29,11 +29,12 @@ public class RetrofitServer<T> {
         }
     }
 
-    // POST 방식으로 통신할 때 사용되는 method
+    // 사용자들이 사용하게 될 함수들
+    // public Call<통신 성공 시 받을 Response의 Type> 함수 이름 (전달하고 싶은 오브젝트) {...}
     public Call<ArrivalFlight> postArrivalFlight (ArrivalFlight arrivalFlight){ return retrofitRequestAPI.API_PostArrivalFlight(arrivalFlight); }
 }
 
-// 테스트용 코드
+// Retrofit을 이용한 Request를 위한 API. 사용자들은 이 곳이 아닌 위에 있는 public method들을 이용할 것.
 interface RetrofitRequestAPI {
     @POST("post") // Post call 테스트용 주소
     Call<ArrivalFlight> API_PostArrivalFlight(@Body ArrivalFlight arrivalFlight);

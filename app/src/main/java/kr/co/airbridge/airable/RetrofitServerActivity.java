@@ -22,7 +22,7 @@ import retrofit.Retrofit;
 // 테스트용 코드
 public class RetrofitServerActivity extends Activity{
     ///////////////////////////////////////////////////////////////
-    RetrofitServer retrofitServer = null;
+    RetrofitServer retrofitServer = new RetrofitServer();
     ///////////////////////////////////////////////////////////////
     int trial = 0;
     Button srchBtn;
@@ -37,10 +37,6 @@ public class RetrofitServerActivity extends Activity{
         srchBtn = (Button)findViewById(R.id.retrofit_test_button);
         srchBtn.setOnClickListener(btnListener);
         srchBtn.setText("Trial : " + trial);
-
-        ///////////////////////////////////////////////////////////////
-        retrofitServer = new RetrofitServer();
-        ///////////////////////////////////////////////////////////////
     }
 
     // Mouse
@@ -80,6 +76,7 @@ public class RetrofitServerActivity extends Activity{
                 }
             });
             ///////////////////////////////////////////////////////////////
+
             srchBtn.setText("Trial : " + trial);
         }
     };
