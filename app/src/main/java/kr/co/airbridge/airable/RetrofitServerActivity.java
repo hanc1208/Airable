@@ -6,13 +6,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+
+import java.io.IOException;
+
+import retrofit.Call;
+import retrofit.Callback;
 import retrofit.GsonConverterFactory;
+import retrofit.Response;
 import retrofit.Retrofit;
 
 // 테스트용 코드
-public class RetrofitServerActivity extends Activity {
-    RetrofitServer<ArrivalFlight> retrofitServer;
-
+public class RetrofitServerActivity extends Activity{
+    ///////////////////////////////////////////////////////////////
+    RetrofitServer retrofitServer = null;
+    ///////////////////////////////////////////////////////////////
     int trial = 0;
     Button srchBtn;
 
@@ -20,15 +31,16 @@ public class RetrofitServerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_search2); -->테스트용이라 Layout 추가 안함
-
-        // Retrofit server 오브젝트 생성
-        retrofitServer = new RetrofitServer<ArrivalFlight>();
+        setContentView(R.layout.activity_retrofit_test);
 
         // Button onClickListener
-        srchBtn = (Button)findViewById(R.id.button);
+        srchBtn = (Button)findViewById(R.id.retrofit_test_button);
         srchBtn.setOnClickListener(btnListener);
-        srchBtn.setText("Trial : "+trial);
+        srchBtn.setText("Trial : " + trial);
+
+        ///////////////////////////////////////////////////////////////
+        retrofitServer = new RetrofitServer();
+        ///////////////////////////////////////////////////////////////
     }
 
     // Mouse
@@ -49,10 +61,27 @@ public class RetrofitServerActivity extends Activity {
 
             Log.i("mytag", "New arrivalFlight = " + arrivalFlight.getAirline());
 
+            ///////////////////////////////////////////////////////////////
             // Post call
-            retrofitServer.POST_ArrivalFlight(arrivalFlight);
-
-            srchBtn.setText("Trial : "+trial);
+            retrofitServer.postArrivalFlight(arrivalFlight).enqueue(new Callback<ArrivalFlight>(){
+                @Override
+                public void onResponse(Response<ArrivalFlight> response, Retrofit retrofit){
+                    Log.i("mytag", "Response received");
+                    Log.i("mytag", response.message());
+                    try{
+                        Log.i("mytag", response.body().getAirline());
+                    }catch(Exception e){
+                        Log.i("mytag", e.getMessage());
+                    }
+                }
+                @Override
+                public void onFailure(Throwable t){
+                    Log.i("mytag", "Transmission failed : " + t.getLocalizedMessage());
+                }
+            });
+            ///////////////////////////////////////////////////////////////
+            srchBtn.setText("Trial : " + trial);
         }
     };
+    // Response를 받았을 때 처리
 }

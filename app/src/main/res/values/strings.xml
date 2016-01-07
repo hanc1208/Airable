@@ -26,4 +26,5 @@
     <string name="map_slide_childview_process_title">절차 이름</string>
     <string name="map_slide_childview_process_detail">절차에 대한 자세한 설명이\n들어가는 공간</string>
     <string name="map_slide_childview_process_location">절차 위치</string>
+    <string name="title_activity_retrofit_test">Retrofit 테스트</string>
 </resources>
