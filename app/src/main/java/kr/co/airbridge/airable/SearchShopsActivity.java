@@ -84,7 +84,8 @@ public class SearchShopsActivity extends AppCompatActivity {
 
         // Test code starts
         for(int i = 0; i < searchText.length(); i++){
-            shopsAdapter.addItem(searchText, "가게 위치 나오는 곳", R.drawable.user_image_default);
+            Shop tempShop = new Shop(searchText + i, "음식", "매장 위치"+i, "00 : 00 ~ 23 : 59", "012-3456-7890");
+            shopsAdapter.addItem(tempShop);
         }
         // Test code ends
     }
