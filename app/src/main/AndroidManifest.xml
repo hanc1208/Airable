@@ -59,6 +59,10 @@
             android:label="장소 검색"
             android:windowSoftInputMode="stateVisible">
         </activity>
+        <activity
+            android:name=".ShopDetailActivity"
+            android:label="@string/shop_name">
+        </activity>
     </application>
 
 

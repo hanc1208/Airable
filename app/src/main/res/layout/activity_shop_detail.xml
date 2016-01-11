@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/shop_detail_layout">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shop_detail_toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/shop_detail_image"
+            android:layout_gravity="center_horizontal" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|top"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="21dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                android:layout_marginRight="20dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shop_detail_location"
+                        android:id="@+id/textViewLocation"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:textColor="#40C4FF"
+                        android:textStyle="bold"
+                        android:textSize="15dp" />
+
+                    <FrameLayout
+                        android:layout_width="39dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"></FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shop_detail_default_location"
+                        android:id="@+id/shop_detail_location"
+                        android:layout_column="2"
+                        android:textColor="#263238"
+                        android:textSize="15dp"
+                        android:maxLines="2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_column="0"
+                        android:layout_span="3"></FrameLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shop_detail_time"
+                        android:id="@+id/textViewTime"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:textColor="#40C4FF"
+                        android:textStyle="bold"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shop_detail_default_time"
+                        android:id="@+id/shop_detail_time"
+                        android:layout_column="2"
+                        android:textColor="#263238"
+                        android:textSize="15dp"
+                        android:maxLines="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </TableRow>
+
+            </TableLayout>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C2C2C2"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shop_detail_default_info"
+                android:id="@+id/shop_detail_info"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="#263238"
+                android:textSize="15dp"
+                android:layout_marginRight="20dp" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C2C2C2"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mark_button"
+                android:src="@drawable/mark_1"
+                android:background="#00000000"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/frameLayout"
+                android:layout_toStartOf="@+id/frameLayout"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp"
+                android:layout_alignTop="@+id/frameLayout" />
+
+            <FrameLayout
+                android:layout_width="35dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/frameLayout"></FrameLayout>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/call_button"
+                android:src="@drawable/call_1"
+                android:background="#00000000"
+                android:layout_alignTop="@+id/frameLayout"
+                android:layout_toRightOf="@+id/frameLayout"
+                android:layout_toEndOf="@+id/frameLayout"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shop_detail_mark"
+                android:id="@+id/textViewMark"
+                android:textSize="15dp"
+                android:textColor="#263238"
+                android:layout_below="@+id/mark_button"
+                android:layout_toLeftOf="@+id/frameLayout"
+                android:layout_toStartOf="@+id/frameLayout"
+                android:layout_marginRight="-15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shop_detail_call"
+                android:id="@+id/textViewCall"
+                android:textColor="#263238"
+                android:textSize="15dp"
+                android:layout_below="@+id/call_button"
+                android:layout_alignLeft="@+id/call_button"
+                android:layout_alignStart="@+id/call_button"
+                android:layout_marginLeft="-2dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
