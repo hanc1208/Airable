@@ -5,42 +5,31 @@ package kr.co.airbridge.airable;
  */
 
 public class Question {
-    private String context;              // 질문 내용
-    private String detailUrl;           // 상세 내용 페이지 url
-    private Question previousQuestion; // 이전 질문
-    private Question nextQuestion;      // 다음 질문
-    private Answer answer;               // 답변
+    private int id;
+    private String content;
+    private int nextWhenYes;
+    private int nextWhenNo;
+    private int nextWhenSkip;
+    private Answer answer;
 
-    public String getDetailUrl() {
-        return detailUrl;
+    public int getId() {
+        return id;
     }
 
-    public void setDetailUrl(String detailUrl) {
-        this.detailUrl = detailUrl;
+    public String getContent() {
+        return content;
     }
 
-    public String getContext() {
-        return context;
+    public int getNextWhenYes() {
+        return nextWhenYes;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public int getNextWhenNo() {
+        return nextWhenNo;
     }
 
-    public Question getPreviousQuestion() {
-        return previousQuestion;
-    }
-
-    public void setPreviousQuestion(Question previousQuestion) {
-        this.previousQuestion = previousQuestion;
-    }
-
-    public Question getNextQuestion() {
-        return nextQuestion;
-    }
-
-    public void setNextQuestion(Question nextQuestion) {
-        this.nextQuestion = nextQuestion;
+    public int getNextWhenSkip() {
+        return nextWhenSkip;
     }
 
     public Answer getAnswer() {
@@ -51,5 +40,7 @@ public class Question {
         this.answer = answer;
     }
 
-    public enum Answer{yes, no, unselected};
+    public enum Answer {
+        YES, NO, SKIP
+    }
 }
