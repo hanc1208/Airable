@@ -6,17 +6,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import kr.co.airbridge.airable.utility.ActivityUtility;
 
 public class MapProcessActivity extends AppCompatActivity{
     @Bind(R.id.map_slide_viewpager)
     ViewPager pager;
+    @Bind(R.id.map_slide_timer_textview)
+    TextView toolbarTextview;
 
     Fragment curFragment = new Fragment();
     int pageCount;
@@ -37,18 +41,31 @@ public class MapProcessActivity extends AppCompatActivity{
         // processList 세팅
         processList = new ArrayList<MapProcess>();
         for (int i = 0; i < 4; i++)
-            processList.add(new MapProcess("Title" + i, "Detail" + i, "Location" + i));
+            processList.add(new MapProcess("Title" + i, "Detail" + i, "Location" + i)); // Test
         pageCount = processList.size();
 
         // View pager 세팅
         pager.setAdapter(new adapter(getSupportFragmentManager()));
         pager.addOnPageChangeListener(new PageListener());
+
+        // Toolbar에 있는 시간 바꾸기
+        toolbarTextview.setText("2h 32min"); // Test
     }
-    
+
+    @OnClick(R.id.map_slide_search_button)
+    public void onMapProcessSearchClick(){
+        Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.map_slide_current_point_button)
+    public void onMapProcessCurrentPointClick(){
+        Toast.makeText(getApplicationContext(), "Current Point", Toast.LENGTH_SHORT).show();
+    }
+
     private class PageListener extends ViewPager.SimpleOnPageChangeListener {
         public void onPageSelected(int position) {
             curPageNum = position;
-            Toast.makeText(getApplicationContext(), "Page number "+position,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Page number "+position,Toast.LENGTH_SHORT).show(); // Test
         }
     }
 

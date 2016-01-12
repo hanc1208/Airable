@@ -62,16 +62,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <View
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/map_slide_map"
-            android:layout_above="@+id/map_slide_viewpager" />
+            android:layout_above="@+id/map_slide_viewpager">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EEEEEE"
+                android:id="@+id/map_slide_map"/>
+            <ImageButton
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:id="@+id/map_slide_current_point_button"
+                android:src="@drawable/position"
+                android:background="#00000000"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="14dp" />
+        </RelativeLayout>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/map_slide_viewpager"
             android:layout_width="match_parent"
             android:layout_height="129dp"
+            android:background="#FFFFFF"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">

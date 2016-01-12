@@ -8,12 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 public class MapProcessSubpage extends Fragment{
-    MapProcessActivity.MapProcess mapProcess;
-
     public MapProcessSubpage(){ }
 
     @Override
@@ -36,5 +31,4 @@ public class MapProcessSubpage extends Fragment{
 
         return linearLayout;
     }
-
 }
