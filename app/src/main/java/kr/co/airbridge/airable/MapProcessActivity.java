@@ -1,6 +1,5 @@
 package kr.co.airbridge.airable;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,6 +14,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import kr.co.airbridge.airable.utility.ActivityUtility;
+import kr.co.airbridge.airable.utility.DBManager;
+import kr.co.airbridge.airable.model.Process;
 
 public class MapProcessActivity extends AppCompatActivity{
     @Bind(R.id.map_slide_viewpager)
@@ -25,7 +26,8 @@ public class MapProcessActivity extends AppCompatActivity{
     Fragment curFragment = new Fragment();
     int pageCount;
     int curPageNum = 0;
-    ArrayList<MapProcess> processList;
+    ArrayList<Process> processList;
+    DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -38,10 +40,17 @@ public class MapProcessActivity extends AppCompatActivity{
 
         ButterKnife.bind(this);
 
+        // DB Setting
+        dbManager = new DBManager(this);
+
+
         // processList 세팅
-        processList = new ArrayList<MapProcess>();
-        for (int i = 0; i < 4; i++)
-            processList.add(new MapProcess("Title" + i, "Detail" + i, "Location" + i)); // Test
+        processList = new ArrayList<Process>();
+        ArrayList<Process> tempArr = dbManager.getProcessList();
+        for(Process tempPrc : tempArr){
+            if(tempPrc.getState() != -1)
+                processList.add(tempPrc);
+        }
         pageCount = processList.size();
 
         // View pager 세팅
@@ -75,11 +84,11 @@ public class MapProcessActivity extends AppCompatActivity{
         @Override
         public Fragment getItem(int position){
             if(position >= 0 && position < processList.size()){
-                MapProcess curProcess = processList.get(position);
+                Process curProcess = processList.get(position);
                 Bundle bundle = new Bundle();
-                bundle.putString("title", curProcess.title);
-                bundle.putString("detail", curProcess.detail);
-                bundle.putString("location", curProcess.location);
+                bundle.putString("title", curProcess.getName());
+                bundle.putString("detail", curProcess.getDescription());
+                bundle.putString("location", curProcess.getPlaceName());
                 curFragment = new MapProcessSubpage();
                 curFragment.setArguments(bundle);
             }
@@ -90,16 +99,4 @@ public class MapProcessActivity extends AppCompatActivity{
         public int getCount() { return pageCount; }
     }
 
-
-    public class MapProcess{
-        String title;
-        String detail;
-        String location;
-
-        public MapProcess(String title, String detail, String location){
-            this.title = title;
-            this.detail = detail;
-            this.location = location;
-        }
-    }
 }
