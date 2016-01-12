@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class MapProcessActivity extends AppCompatActivity{
 
     Fragment curFragment = new Fragment();
     int pageCount;
+    int curPageNum = 0;
     ArrayList<MapProcess> processList;
 
     @Override
@@ -40,6 +42,14 @@ public class MapProcessActivity extends AppCompatActivity{
 
         // View pager 세팅
         pager.setAdapter(new adapter(getSupportFragmentManager()));
+        pager.addOnPageChangeListener(new PageListener());
+    }
+    
+    private class PageListener extends ViewPager.SimpleOnPageChangeListener {
+        public void onPageSelected(int position) {
+            curPageNum = position;
+            Toast.makeText(getApplicationContext(), "Page number "+position,Toast.LENGTH_SHORT).show();
+        }
     }
 
     private class adapter extends FragmentPagerAdapter{
