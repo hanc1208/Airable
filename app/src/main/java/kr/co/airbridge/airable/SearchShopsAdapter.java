@@ -72,10 +72,10 @@ public class SearchShopsAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(v.getContext(), ShopDetailActivity.class);
-                    i.putExtra("shopTitle", shopList.get(pos).getEntrpskoreannm());
-                    i.putExtra("shopLocation", shopList.get(pos).getLckoreannm());
-                    i.putExtra("shopTime", shopList.get(pos).getServicetime());
-                    i.putExtra("shopInfo", "저희 매장은 소화제, 진통제 등 여행의 필수품인 구급약을 두루 갖추고 있습니다.\n행복한 여행을 위한 준비, 저희 매장에서 하세요!"); // Default info
+                    i.putExtra("shopTitle", shopList.get(pos).getTitle());
+                    i.putExtra("shopLocation", shopList.get(pos).getLocation());
+                    i.putExtra("shopTime", shopList.get(pos).getTime());
+                    i.putExtra("shopInfo", shopList.get(pos).getInfo());
                     i.putExtra("shopTel", shopList.get(pos).getTel());
                     v.getContext().startActivity(i);
                 }
@@ -87,8 +87,8 @@ public class SearchShopsAdapter extends BaseAdapter {
             shopImage = holder.h_shopImage;
         }
 
-        shopTitle.setText(shopList.get(pos).getEntrpskoreannm());
-        shopLocation.setText(shopList.get(pos).getLckoreannm());
+        shopTitle.setText(shopList.get(pos).getTitle());
+        shopLocation.setText(shopList.get(pos).getLocation());
         shopImage.setImageResource(R.drawable.user_image_default);
 
         return convertView;

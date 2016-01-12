@@ -45,7 +45,6 @@ public class ShopDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop_detail);
 
         ButterKnife.bind(this);
-
         ActivityUtility activityUtility = new ActivityUtility(this);
         activityUtility.setToolbar(R.id.shop_detail_toolbar);
         activityUtility.setNavigationAsBack();

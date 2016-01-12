@@ -1,50 +1,50 @@
 package kr.co.airbridge.airable;
 
 public class Shop {
-    private String entrpskoreannm; // 매장명
-    private String trtmntprdlstkoreannm; // 취급품목
-    private String lckoreannm; // 위치
-    private String servicetime; // 영업시간
-    private String tel; // 전화번호
+    private String title;
+    private String info;
+    private String location;
+    private String time;
+    private String tel;
 
-    public Shop (String name, String items, String location, String time, String tel){
-        entrpskoreannm = name;
-        trtmntprdlstkoreannm = items;
-        lckoreannm = location;
-        servicetime = time;
+    public Shop (String title, String info, String location, String time, String tel){
+        this.title = title;
+        this.info = info;
+        this.location = location;
+        this.time = time;
         this.tel = tel;
     }
 
-    public String getEntrpskoreannm() {
-        return entrpskoreannm;
+    public String getInfo() {
+        return info;
     }
 
-    public void setEntrpskoreannm(String entrpskoreannm) {
-        this.entrpskoreannm = entrpskoreannm;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public String getTrtmntprdlstkoreannm() {
-        return trtmntprdlstkoreannm;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTrtmntprdlstkoreannm(String trtmntprdlstkoreannm) {
-        this.trtmntprdlstkoreannm = trtmntprdlstkoreannm;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getLckoreannm() {
-        return lckoreannm;
+    public String getLocation() {
+        return location;
     }
 
-    public void setLckoreannm(String lckoreannm) {
-        this.lckoreannm = lckoreannm;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getServicetime() {
-        return servicetime;
+    public String getTime() {
+        return time;
     }
 
-    public void setServicetime(String servicetime) {
-        this.servicetime = servicetime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getTel() {
@@ -54,5 +54,4 @@ public class Shop {
     public void setTel(String tel) {
         this.tel = tel;
     }
-
 }
