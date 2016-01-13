@@ -52,6 +52,7 @@ public class MyAirActivity extends AppCompatActivity {
         tabHost.addTab(spec);
 
 
+
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++)
         {
             tabHost.getTabWidget().getChildAt(i).setPadding(0,0,0,0);
@@ -85,5 +86,10 @@ public class MyAirActivity extends AppCompatActivity {
 
         textView.setText(strNow);
 
+    }
+
+    public void FlightClick(View view){
+
+        finish();
     }
 }

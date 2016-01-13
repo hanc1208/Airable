@@ -189,6 +189,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(myAirActivityIntent);
     }
 
+    @OnClick(R.id.main_map)
+    public void onMapButtonClick() {
+        Intent mapProcessActivity = new Intent(getApplicationContext(), MapProcessActivity.class);
+        startActivity(mapProcessActivity);
+    }
+
     class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
         Context context;
         List<RecycleItem> items;
