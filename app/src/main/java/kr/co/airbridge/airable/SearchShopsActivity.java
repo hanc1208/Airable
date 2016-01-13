@@ -71,6 +71,7 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
     @OnClick(R.id.searchshops_reset_button)
     public void onResetClick() {
         edittext.setText("");
+        SearchShops();
     }
 
     // Map 버튼 이벤트
@@ -118,12 +119,6 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
                 }
             }
         }
-        /*// Test code starts
-        for (int i = 0; i < searchText.length(); i++) {
-            Shop tempShop = new Shop(i+1, searchText + i, "음식", "매장 위치" + i, 10, "00 : 00 ~ 23 : 59", "012-3456-7890", "something.png", 0);
-            shopsAdapter.addItem(tempShop);
-        }
-        // Test code ends*/
         shopsAdapter.notifyDataSetChanged();
     }
 

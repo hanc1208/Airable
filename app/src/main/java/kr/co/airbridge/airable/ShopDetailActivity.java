@@ -60,7 +60,28 @@ public class ShopDetailActivity extends AppCompatActivity {
             shopInfo.setText("저희 매장은 소화제, 진통제 등 여행의 필수품인\n구급약을 두루 갖추고 있습니다.\n행복한 여행을 위한 준비, 저희 매장에서 하세요!");
             // Test code ends
         }else{
-            shopImage.setImageResource(R.drawable.user_image_default); // Default image 사용
+            int imageResource;
+            switch(extras.getString("shopImage")){
+                case "burger.png":
+                    imageResource = R.drawable.burger;
+                    break;
+                case "ricecake.png":
+                    imageResource = R.drawable.ricecake;
+                    break;
+                case "bag.png":
+                    imageResource = R.drawable.bag;
+                    break;
+                case "taco.png":
+                    imageResource = R.drawable.taco;
+                    break;
+                case "cosmetic.png":
+                    imageResource = R.drawable.cosmetic;
+                    break;
+                default:
+                    imageResource = R.drawable.user_image_default;
+                    break;
+            }
+            shopImage.setImageResource(imageResource); // Default image 사용
             shopLocation.setText(extras.getString("shopLocation"));
             shopTime.setText(extras.getString("shopTime"));
             shopInfo.setText(extras.getString("shopInfo"));

@@ -49,47 +49,63 @@ public class SearchShopsAdapter extends BaseAdapter {
         ImageView shopImage=null;
         SearchShopsCustomHolder holder = null;
 
-        if(convertView == null){
-            // View가 null일 경우 searchshops_item 레이아웃 사용
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.searchshops_item, parent, false);
+        // View가 null일 경우 searchshops_item 레이아웃 사용
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(R.layout.searchshops_item, parent, false);
 
-            // TextView 받아오기
-            shopTitle = (TextView) convertView.findViewById(R.id.searchshops_item_title);
-            shopLocation = (TextView) convertView.findViewById(R.id.searchshops_item_location);
-            // ImageView 받아오기
-            shopImage = (ImageView) convertView.findViewById(R.id.searchshops_item_image);
+        // TextView 받아오기
+        shopTitle = (TextView) convertView.findViewById(R.id.searchshops_item_title);
+        shopLocation = (TextView) convertView.findViewById(R.id.searchshops_item_location);
+        // ImageView 받아오기
+        shopImage = (ImageView) convertView.findViewById(R.id.searchshops_item_image);
 
-            // Holder 생성 및 등록
-            holder = new SearchShopsCustomHolder();
-            holder.h_shopImage = shopImage;
-            holder.h_shopLocation = shopLocation;
-            holder.h_shopTitle = shopTitle;
-            convertView.setTag(holder);
+        // Holder 생성 및 등록
+        holder = new SearchShopsCustomHolder();
+        holder.h_shopImage = shopImage;
+        holder.h_shopLocation = shopLocation;
+        holder.h_shopTitle = shopTitle;
+        convertView.setTag(holder);
 
-            // 리스트의 Shop 아이템을 선택했을 때 아래의 이벤트가 발생
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(v.getContext(), ShopDetailActivity.class);
-                    i.putExtra("shopTitle", shopList.get(pos).getTitle());
-                    i.putExtra("shopLocation", shopList.get(pos).getLocation());
-                    i.putExtra("shopTime", shopList.get(pos).getTime());
-                    i.putExtra("shopInfo", shopList.get(pos).getInfo());
-                    i.putExtra("shopTel", shopList.get(pos).getTel());
-                    v.getContext().startActivity(i);
-                }
-            });
-        }else{
-            holder = (SearchShopsCustomHolder) convertView.getTag();
-            shopTitle = holder.h_shopTitle;
-            shopLocation = holder.h_shopLocation;
-            shopImage = holder.h_shopImage;
-        }
+        // 리스트의 Shop 아이템을 선택했을 때 아래의 이벤트가 발생
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ShopDetailActivity.class);
+                i.putExtra("shopTitle", shopList.get(pos).getTitle());
+                i.putExtra("shopLocation", shopList.get(pos).getLocation());
+                i.putExtra("shopTime", shopList.get(pos).getTime());
+                i.putExtra("shopInfo", shopList.get(pos).getInfo());
+                i.putExtra("shopTel", shopList.get(pos).getTel());
+                i.putExtra("shopImage", shopList.get(pos).getImage());
+                v.getContext().startActivity(i);
+            }
+        });
 
         shopTitle.setText(shopList.get(pos).getTitle());
         shopLocation.setText(shopList.get(pos).getLocation());
-        shopImage.setImageResource(R.drawable.user_image_default);
+
+        int imageResource;
+        switch(shopList.get(pos).getImage()){
+            case "burger.png":
+                imageResource = R.drawable.burger;
+                break;
+            case "ricecake.png":
+                imageResource = R.drawable.ricecake;
+                break;
+            case "bag.png":
+                imageResource = R.drawable.bag;
+                break;
+            case "taco.png":
+                imageResource = R.drawable.taco;
+                break;
+            case "cosmetic.png":
+                imageResource = R.drawable.cosmetic;
+                break;
+            default:
+                imageResource = R.drawable.user_image_default;
+                break;
+        }
+        shopImage.setImageResource(imageResource);
 
         return convertView;
     }
