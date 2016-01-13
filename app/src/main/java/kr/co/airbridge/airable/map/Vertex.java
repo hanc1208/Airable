@@ -5,6 +5,7 @@ public class Vertex {
     private int x;
     private int y;
     private int[] adjacencies;
+    private java.util.Map<String, Integer> rssiMap;
 
     public int getId() {
         return id;
@@ -20,5 +21,9 @@ public class Vertex {
 
     public int[] getAdjacencies() {
         return adjacencies;
+    }
+
+    public java.util.Map<String, Integer> getRssiMap() {
+        return rssiMap;
     }
 }
