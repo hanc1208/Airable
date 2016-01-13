@@ -105,6 +105,9 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
             case 33:
                 tempStr = "3F";
                 break;
+            case 40:
+                tempStr = "sGen";
+                break;
             default:
                 tempStr = "ALL";
                 break;

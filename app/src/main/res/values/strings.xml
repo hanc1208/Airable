@@ -49,6 +49,7 @@
     <string name="floor_select_2f">2F</string>
     <string name="floor_select_3f">3F</string>
     <string name="floor_select_4f">4F</string>
+    <string name="floor_select_sgenf">sGen</string>
     <string name="floor_select_trafficcenter">교통센터</string>
     <string name="floor_select_terminal">여객터미널</string>
     <string name="floor_select_boardingzone">탑승동</string>

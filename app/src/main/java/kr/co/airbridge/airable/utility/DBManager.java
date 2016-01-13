@@ -92,7 +92,7 @@ public class DBManager {
             int floor = cursor.getInt(4);
             String time = cursor.getString(5);
             String tel = cursor.getString(6);
-            String image = cursor.getString(7);
+            int image = cursor.getInt(7);
             int mark = cursor.getInt(8);
 
             Shop tempShop = new Shop (no, title, info, location, floor, time, tel, image, mark);
@@ -119,7 +119,7 @@ public class DBManager {
         int floor = cursor.getInt(4);
         String time = cursor.getString(5);
         String tel = cursor.getString(6);
-        String image = cursor.getString(7);
+        int image = cursor.getInt(7);
         int mark = cursor.getInt(8);
 
         cursor.close();

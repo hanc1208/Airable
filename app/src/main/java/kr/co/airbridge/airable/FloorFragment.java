@@ -44,6 +44,9 @@ public class FloorFragment extends Fragment {
     @Bind(R.id.floor_select_right_3f)
     Button right3f;
 
+    @Bind(R.id.floor_select_sgen)
+    Button sgenf;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.floor_select, container, false);
@@ -95,6 +98,9 @@ public class FloorFragment extends Fragment {
                 break;
             case 33:
                 targetButton = right3f;
+                break;
+            case 40:
+                targetButton = sgenf;
                 break;
             default:
                 targetButton = null;
@@ -150,6 +156,9 @@ public class FloorFragment extends Fragment {
                 break;
             case R.id.floor_select_right_3f:
                 curAct.setCurFloor(33);
+                break;
+            case R.id.floor_select_sgen:
+                curAct.setCurFloor(40);
                 break;
             case R.id.floor_select_all_button:
                 curAct.setCurFloor(-1);

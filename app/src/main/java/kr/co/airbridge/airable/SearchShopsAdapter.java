@@ -3,6 +3,7 @@ package kr.co.airbridge.airable;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,7 @@ public class SearchShopsAdapter extends BaseAdapter {
                 i.putExtra("shopImage", shopList.get(pos).getImage());
                 i.putExtra("shopMark", shopList.get(pos).getMark());
                 i.putExtra("shopNo", shopList.get(pos).getNo());
-                ((SearchShopsActivity)context).startActivityForResultWrapper(i);
+                ((SearchShopsActivity) context).startActivityForResultWrapper(i);
             }
         });
 
@@ -89,25 +90,12 @@ public class SearchShopsAdapter extends BaseAdapter {
         shopLocation.setText(shopList.get(pos).getLocation());
 
         int imageResource;
-        switch(shopList.get(pos).getImage()){
-            case "burger.png":
-                imageResource = R.drawable.burger;
-                break;
-            case "ricecake.png":
-                imageResource = R.drawable.ricecake;
-                break;
-            case "bag.png":
-                imageResource = R.drawable.bag;
-                break;
-            case "taco.png":
-                imageResource = R.drawable.taco;
-                break;
-            case "cosmetic.png":
-                imageResource = R.drawable.cosmetic;
-                break;
-            default:
-                imageResource = R.drawable.user_image_default;
-                break;
+        try{
+            imageResource = Shop.shopImageId[shopList.get(pos).getImage()];
+            Log.i("mytag", "Check image resource : "+shopList.get(pos).getImage());
+        }catch(Exception e){
+            imageResource = R.drawable.user_image_default;
+            Log.e("exception", e.getMessage());
         }
         shopImage.setImageResource(imageResource);
 

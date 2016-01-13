@@ -28,7 +28,7 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
     FragmentManager fragmentManager;
     DBManager dbManager;
     ArrayList<Shop> shopList;
-    int curFloor = -1; // 10 11 12 13 14 : 교통센터 (B1f~4f), 20 21 22 23 24 : 터미널, 30 31 32 33 : 탑승동
+    int curFloor = -1; // 10 11 12 13 14 : 교통센터 (B1f~4f), 20 21 22 23 24 : 터미널, 30 31 32 33 : 탑승동, 40 : sGen Club
 
     @Bind(R.id.searchshops_edittext)
     EditText edittext;
@@ -181,6 +181,9 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
                 break;
             case 33:
                 tempStr = "탑승동 3F";
+                break;
+            case 40:
+                tempStr = "sGen Club";
                 break;
             default:
                 tempStr = "ALL";

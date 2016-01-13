@@ -8,10 +8,12 @@ public class Shop {
     private int floor;
     private String time;
     private String tel;
-    private String image;
+    private int image;
     private int mark;
 
-    public Shop (int no, String title, String info, String location, int floor, String time, String tel, String image, int mark){
+    public static int[] shopImageId = {R.drawable.sgen, R.drawable.taco, R.drawable.burger, R.drawable.ricecake, R.drawable.cosmetic, R.drawable.bag};
+
+    public Shop (int no, String title, String info, String location, int floor, String time, String tel, int image, int mark){
         this.no = no;
         this.title = title;
         this.info = info;
@@ -79,11 +81,11 @@ public class Shop {
         this.tel = tel;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
