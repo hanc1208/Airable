@@ -65,7 +65,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/map_search_info_linear">
+            android:layout_above="@+id/search_map_info_linear">
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,9 +100,9 @@
             android:layout_width="match_parent"
             android:layout_height="0.75dp"
             android:background="#c2c2c2"
-            android:layout_above="@+id/map_search_info_linear"/>
+            android:layout_above="@+id/search_map_info_linear"/>
         <RelativeLayout
-            android:id="@+id/map_search_info_linear"
+            android:id="@+id/search_map_info_linear"
             android:layout_width="match_parent"
             android:layout_height="129dp"
             android:background="#FFFFFF"

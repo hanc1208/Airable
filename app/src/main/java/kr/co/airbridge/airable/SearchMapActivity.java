@@ -18,11 +18,11 @@ public class SearchMapActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_map);
 
-        ButterKnife.bind(this);
-
         ActivityUtility activityUtility = new ActivityUtility(this);
         activityUtility.setToolbar(R.id.search_map_toolbar);
         activityUtility.setNavigationAsBack();
+
+        ButterKnife.bind(this);
 
         bundle = getIntent().getExtras();
         if(bundle.getString("searchkeyword")!=null) {
@@ -30,32 +30,32 @@ public class SearchMapActivity extends AppCompatActivity{
         }else{
             searchKeyword = "";
         }
-        Log.i("mytag", "Search Keyword : "+searchKeyword); // Intent getExtra test
+        Log.i("mytag", "Search Keyword : " + searchKeyword); // Intent getExtra test
     }
 
 
     @OnClick(R.id.search_map_floor_button)
     public void onSearchMapFloorClick(){
-        Toast.makeText(getApplicationContext(), "Map", Toast.LENGTH_SHORT); // Test
+        Toast.makeText(getApplicationContext(), "Map", Toast.LENGTH_SHORT).show(); // Test
     }
 
     @OnClick(R.id.search_map_current_point_button)
     public void onSearchMapCurPointClick(){
-        Toast.makeText(getApplicationContext(), "Current Point", Toast.LENGTH_SHORT); // Test
+        Toast.makeText(getApplicationContext(), "Current Point", Toast.LENGTH_SHORT).show(); // Test
     }
 
     @OnClick(R.id.search_map_search_button)
     public void onSearchMapSearchClick(){
-        Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT); // Test
+        Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show(); // Test
     }
 
     @OnClick(R.id.search_map_curshop_mark)
     public void onCurshopMarkClick(){
-        Toast.makeText(getApplicationContext(), "Mark", Toast.LENGTH_SHORT); // Test
+        Toast.makeText(getApplicationContext(), "Mark", Toast.LENGTH_SHORT).show(); // Test
     }
 
     @OnClick(R.id.search_map_curshop_call)
     public void onCurshopCallClick(){
-        Toast.makeText(getApplicationContext(), "Call", Toast.LENGTH_SHORT); // Test
+        Toast.makeText(getApplicationContext(), "Call", Toast.LENGTH_SHORT).show(); // Test
     }
 }
