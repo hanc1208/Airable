@@ -107,6 +107,7 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
             shopsAdapter.addItem(tempShop);
         }
         // Test code ends
+        shopsAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -170,5 +171,6 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
                 break;
         }
         floor.setText(tempStr);
+        SearchShops();
     }
 }
