@@ -43,4 +43,12 @@
     <string name="search_map_curshop_title">매장 이름</string>
     <string name="search_map_curshop_time">운영시간 00 : 00 - 23 : 59</string>
     <string name="search_map_curshop_location">매장 위치</string>
+    <string name="floor_select_b1f">B1F</string>
+    <string name="floor_select_1f">1F</string>
+    <string name="floor_select_2f">2F</string>
+    <string name="floor_select_3f">3F</string>
+    <string name="floor_select_4f">4F</string>
+    <string name="floor_select_trafficcenter">교통센터</string>
+    <string name="floor_select_terminal">여객터미널</string>
+    <string name="floor_select_boardingzone">탑승동</string>
 </resources>
