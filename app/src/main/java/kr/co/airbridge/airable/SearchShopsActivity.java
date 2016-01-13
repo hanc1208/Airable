@@ -16,14 +16,19 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kr.co.airbridge.airable.utility.DBManager;
 
 public class SearchShopsActivity extends AppCompatActivity implements FloorButtonListener{
     SearchShopsAdapter shopsAdapter;
     FragmentManager fragmentManager;
-    int curFloor = -1; // 10 11 12 13 14 : 교통센터 (B1f~4f), 20 21 22 23 24 : 터미널, 30 31 32 : 탑승동
+    DBManager dbManager;
+    ArrayList<Shop> shopList;
+    int curFloor = -1; // 10 11 12 13 14 : 교통센터 (B1f~4f), 20 21 22 23 24 : 터미널, 30 31 32 33 : 탑승동
 
     @Bind(R.id.searchshops_edittext)
     EditText edittext;
@@ -37,6 +42,8 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_shops);
         fragmentManager = getFragmentManager();
+        dbManager = new DBManager(this);
+        shopList = dbManager.getShopList();
 
         ButterKnife.bind(this);
 
@@ -57,6 +64,7 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
         // SearchShopsAdapter 생성 및 연결
         shopsAdapter = new SearchShopsAdapter();
         listview.setAdapter(shopsAdapter);
+        SearchShops();
     }
 
     // Reset 버튼을 누르면 EditText의 내용들을 삭제한다.
@@ -101,12 +109,21 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
 
         shopsAdapter.clearList();  // 검색 후 List 수정
 
-        // Test code starts
+        for(Shop s : shopList){
+            if(s.getInfo().contains(searchText) || s.getTitle().contains(searchText)){
+                if(curFloor == -1){
+                    shopsAdapter.addItem(s);
+                }else if(s.getFloor() == curFloor){
+                    shopsAdapter.addItem(s);
+                }
+            }
+        }
+        /*// Test code starts
         for (int i = 0; i < searchText.length(); i++) {
-            Shop tempShop = new Shop(searchText + i, "음식", "매장 위치" + i, "00 : 00 ~ 23 : 59", "012-3456-7890");
+            Shop tempShop = new Shop(i+1, searchText + i, "음식", "매장 위치" + i, 10, "00 : 00 ~ 23 : 59", "012-3456-7890", "something.png", 0);
             shopsAdapter.addItem(tempShop);
         }
-        // Test code ends
+        // Test code ends*/
         shopsAdapter.notifyDataSetChanged();
     }
 
@@ -165,6 +182,9 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
                 break;
             case 32:
                 tempStr = "탑승동 2F";
+                break;
+            case 33:
+                tempStr = "탑승동 3F";
                 break;
             default:
                 tempStr = "ALL";

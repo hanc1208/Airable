@@ -240,6 +240,21 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="10dp" />
 
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:onClick="onFloorSelectClick"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_3f"
+            android:id="@+id/floor_select_right_3f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_mid_2f"
+            android:layout_alignRight="@+id/floor_select_right_2f"
+            android:layout_alignEnd="@+id/floor_select_right_2f"
+            android:layout_marginBottom="10dp" />
+
     </RelativeLayout>
 
     <RelativeLayout
