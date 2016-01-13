@@ -33,6 +33,7 @@
     <string name="shop_detail_mark">경로에 찜하기</string>
     <string name="shop_detail_call">전화 걸기</string>
     <string name="popup_window_mark">찜 하시겠습니까?</string>
+    <string name="popup_window_unmark">찜 취소하시겠습니까?</string>
     <string name="popup_window_yes">확인</string>
     <string name="popup_window_cancel">취소</string>
     <string name="popup_window_call_number">031-123-4567</string>

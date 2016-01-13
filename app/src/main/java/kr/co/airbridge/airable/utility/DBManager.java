@@ -68,7 +68,7 @@ public class DBManager {
     }
 
     public void changeProcessState(int no, int state) {
-        String query = "UPDATE process SET state=" + state + "WHERE no=" + no;
+        String query = "UPDATE process SET state=" + state + " WHERE no=" + no;
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL(query);
@@ -130,7 +130,7 @@ public class DBManager {
     }
 
     public void updateShopMark(int upt_no, int upt_mark) {
-        String query = "UPDATE shop SET mark=" + upt_mark + "WHERE no=" + upt_no;
+        String query = "UPDATE shop SET mark=" + upt_mark + " WHERE no=" + upt_no;
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL(query);

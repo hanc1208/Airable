@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO process VALUES(2, '로밍', 4, '여객터미널 1층, 3층', '보안검색 또는 출국심사 완료 후 일반지역으로 나올 수 없으니 사전에 로밍을 받으세요', -1)");
         db.execSQL("INSERT INTO process VALUES(3, '여행자 보험', 5, '여객터미널 3층 B, C, D 체크인 카운터 부근', '여행자 보험에 가입하시면 여행 중 사고에 대한 보상을 받을 수 있습니다', -1)");
         db.execSQL("INSERT INTO process VALUES(4, '환전', 5, '여객터미널 1층, 3층', '공항 내 환전소 위치를 확인하여 환전하세요', -1)");
-        db.execSQL("INSERT INTO process VALUES(5, '예방 접종', 5, '여객터미널 중앙 밀레니엄홀 2층 5구역', '착지 국가에 따라 접종증명서를 확인하는 경우가 있으므로 반드시 확인하시기 바랍니다', 0)");
+        db.execSQL("INSERT INTO process VALUES(5, '예방 접종', 5, '여객터미널 중앙 밀레니엄홀 2층 5구역', '착지 국가에 따라 접종증명서를 확인하는 경우가 있으므로 반드시 확인하시기 바랍니다', -1)");
         db.execSQL("INSERT INTO process VALUES(6, '동식물 검역', 5, '여객터미널 3층 7번 출입구 부근', '동식물을 가지고 있으신 분들은 검역 신고를 하세요', -1)");
         db.execSQL("INSERT INTO process VALUES(7, '문화재 신고', 7, '여객터미널 3층 출국장 3번 게이트 부근', '문화재의 국외 반출을 금지하고 있습니다. 문화재로 오인될 수 있는 물건을 반출할 때에도 확인(감정) 받아야 합니다', -1)");
         db.execSQL("INSERT INTO process VALUES(8, '탑승 수속', 5, '여객터미널 3층 0 체크인카운터', '해당 카운터로 이동해 탑승권을 받으세요', 0)");

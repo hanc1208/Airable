@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import kr.co.airbridge.airable.utility.ActivityUtility;
+import kr.co.airbridge.airable.utility.DBManager;
 
 public class ShopDetailActivity extends AppCompatActivity {
     @Bind(R.id.shop_detail_layout)
@@ -38,11 +40,14 @@ public class ShopDetailActivity extends AppCompatActivity {
     PopupMarkDialog popupMarkDialog;
     PopupCallDialog popupCallDialog;
     Bundle extras;
+    DBManager dbManager;
+    int mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_detail);
+        dbManager = new DBManager(this);
 
         ButterKnife.bind(this);
         ActivityUtility activityUtility = new ActivityUtility(this);
@@ -53,12 +58,10 @@ public class ShopDetailActivity extends AppCompatActivity {
 
         extras = getIntent().getExtras();
         if(extras == null){
-            // Test code starts
             shopImage.setImageResource(R.drawable.user_image_default);
             shopLocation.setText("여객터미널(일반지역) 3층\nF 체크인 카운터 부근");
             shopTime.setText("05 : 00 ~ 22 : 00");
             shopInfo.setText("저희 매장은 소화제, 진통제 등 여행의 필수품인\n구급약을 두루 갖추고 있습니다.\n행복한 여행을 위한 준비, 저희 매장에서 하세요!");
-            // Test code ends
         }else{
             int imageResource;
             switch(extras.getString("shopImage")){
@@ -86,6 +89,12 @@ public class ShopDetailActivity extends AppCompatActivity {
             shopTime.setText(extras.getString("shopTime"));
             shopInfo.setText(extras.getString("shopInfo"));
             toolbar.setTitle(extras.getString("shopTitle"));
+            mark = extras.getInt("shopMark");
+
+            if(mark == 0)
+                markBtn.setImageResource(R.drawable.mark_1);
+            else
+                markBtn.setImageResource(R.drawable.mark_2);
             setSupportActionBar(toolbar);
             activityUtility.setNavigationAsBack();
         }
@@ -97,8 +106,11 @@ public class ShopDetailActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     ((ImageButton) v).setImageResource(R.drawable.mark_2);
-                } else if (event.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton) v).setImageResource(R.drawable.mark_1);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (mark == 0)
+                        ((ImageButton) v).setImageResource(R.drawable.mark_1);
+                    else
+                        ((ImageButton) v).setImageResource(R.drawable.mark_2);
                     onMarkClicked(); // == onClickEvent
                 }
                 return true;
@@ -110,20 +122,19 @@ public class ShopDetailActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     ((ImageButton) v).setImageResource(R.drawable.call_2);
-                } else if (event.getAction() == MotionEvent.ACTION_UP){
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     ((ImageButton) v).setImageResource(R.drawable.call_1);
                     onCallClicked(); // == onClickEvent
                 }
                 return true;
             }
         });
-
     }
 
     // 찜하기 버튼 클릭 이벤트
     public void onMarkClicked(){
         popupMarkDialog =
-                new PopupMarkDialog(this, popupMarkYesListener, popupMarkCancelListener);
+                new PopupMarkDialog(this, popupMarkYesListener, popupMarkCancelListener, mark);
         popupMarkDialog.show();
     }
 
@@ -137,8 +148,16 @@ public class ShopDetailActivity extends AppCompatActivity {
     // 찜하기 팝업 창에서 '확인' 선택 이벤트
     private View.OnClickListener popupMarkYesListener = new View.OnClickListener(){
         public void onClick(View v){
-            // Do Something Here
-            Toast.makeText(getApplicationContext(), "Mark", Toast.LENGTH_SHORT).show(); // Test
+            int no = extras.getInt("shopNo");
+            if (mark == 0) {
+                mark = 1;
+                markBtn.setImageResource(R.drawable.mark_2);
+                dbManager.updateShopMark(no, 1);
+            } else {
+                mark = 0;
+                markBtn.setImageResource(R.drawable.mark_1);
+                dbManager.updateShopMark(no, 0);
+            }
             popupMarkDialog.dismiss();
         }
     };
@@ -149,7 +168,6 @@ public class ShopDetailActivity extends AppCompatActivity {
             popupMarkDialog.dismiss();
         }
     };
-
 
     // 전화 걸기 팝업 창에서 '연결' 선택 이벤트
     private View.OnClickListener popupCallYesListener = new View.OnClickListener(){
@@ -166,4 +184,12 @@ public class ShopDetailActivity extends AppCompatActivity {
             popupCallDialog.dismiss();
         }
     };
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }

@@ -101,6 +101,7 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
 
     // EditText에서 Search Action 발생 시, 장소를 검색하는 Method.
     public void SearchShops() {
+        shopList = dbManager.getShopList();
         String searchText = edittext.getText().toString();
 
         // 키보드 내리기
@@ -186,6 +187,16 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
                 break;
         }
         floor.setText(tempStr);
+        SearchShops();
+    }
+
+    public void startActivityForResultWrapper(Intent i){
+        startActivityForResult(i, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         SearchShops();
     }
 }

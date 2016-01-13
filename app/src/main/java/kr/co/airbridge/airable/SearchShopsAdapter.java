@@ -1,5 +1,6 @@
 package kr.co.airbridge.airable;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -70,14 +71,17 @@ public class SearchShopsAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), ShopDetailActivity.class);
+                Context context = v.getContext();
+                Intent i = new Intent(context, ShopDetailActivity.class);
                 i.putExtra("shopTitle", shopList.get(pos).getTitle());
                 i.putExtra("shopLocation", shopList.get(pos).getLocation());
                 i.putExtra("shopTime", shopList.get(pos).getTime());
                 i.putExtra("shopInfo", shopList.get(pos).getInfo());
                 i.putExtra("shopTel", shopList.get(pos).getTel());
                 i.putExtra("shopImage", shopList.get(pos).getImage());
-                v.getContext().startActivity(i);
+                i.putExtra("shopMark", shopList.get(pos).getMark());
+                i.putExtra("shopNo", shopList.get(pos).getNo());
+                ((SearchShopsActivity)context).startActivityForResultWrapper(i);
             }
         });
 
