@@ -92,6 +92,9 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         final Paint pntWhite = new Paint();
         pntWhite.setAntiAlias(true);
         pntWhite.setColor(getResources().getColor(R.color.colorPrimaryDark));
+        final Paint pntRed = new Paint();
+        pntRed.setAntiAlias(true);
+        pntRed.setColor(Color.RED);
         List<Vertex> vertexList = new ArrayList<Vertex>();
 
         for(int i = 0; i < processList.size(); i++){
@@ -102,8 +105,13 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         Path path = new Path(vertexList, getResources().getColor(R.color.colorPrimary), 10);
         for(int i = 0; i < processList.size(); i++){
             Process prc = processList.get(i);
-            Drawable tempDraw = new MyDrawable(prc, i, pntWhite);
-            path.putMarker(prc.getVertexid(), tempDraw);
+            Drawable tempDraw = new MyDrawable(prc, i, pntWhite, false);
+            if(i == 0){
+                Drawable drawRed = new MyDrawable(prc, i, pntRed, true);
+                path.putMarker(prc.getVertexid(), drawRed);
+            }else{
+                path.putMarker(prc.getVertexid(), tempDraw);
+            }
         }//for
         mapView.setPath(path);
 
@@ -137,10 +145,35 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         mapView.setCurrentPosition(currentPosition);
     }
 
+    public void putCurMarker(){
+        final Paint pntWhite = new Paint();
+        pntWhite.setAntiAlias(true);
+        pntWhite.setColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        final Paint pntRed = new Paint();
+        pntRed.setAntiAlias(true);
+        pntRed.setColor(Color.RED);
+
+        Path path = mapView.getPath();
+
+        for(int i = 0; i < processList.size(); i++){
+            Process prc = processList.get(i);
+            Drawable tempDraw = new MyDrawable(prc, i, pntWhite, false);
+            if(i == curPageNum){
+                Drawable drawRed = new MyDrawable(prc, i, pntRed, true);
+                path.putMarker(prc.getVertexid(), drawRed);
+            }else{
+                path.putMarker(prc.getVertexid(), tempDraw);
+            }
+        }//for
+    }
+
+
     private class PageListener extends ViewPager.SimpleOnPageChangeListener {
         public void onPageSelected(int position) {
             curPageNum = position;
-            Toast.makeText(getApplicationContext(), "Page number "+position,Toast.LENGTH_SHORT).show(); // Test
+            putCurMarker();
+
         }
     }
 
@@ -171,13 +204,17 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         Paint pnt;
         Drawable drawable_map_1 = getResources().getDrawable(R.drawable.map_1);
         Drawable drawable_map_check = getResources().getDrawable(R.drawable.map_check);
+        Drawable drawable_map_1_now = getResources().getDrawable(R.drawable.map_1_now);
+        boolean isCurrentMarker;
 
-        public MyDrawable(Process prc, int i, Paint pnt) {
+        public MyDrawable(Process prc, int i, Paint pnt, boolean isCurrentMarker) {
             this.prc = prc;
             this.i = i;
             this.pnt = pnt;
+            this.isCurrentMarker = isCurrentMarker;
             drawable_map_1.setBounds(0, 0, drawable_map_1.getIntrinsicWidth(), drawable_map_1.getIntrinsicHeight());
             drawable_map_check.setBounds(0, 0, drawable_map_check.getIntrinsicWidth(), drawable_map_check.getIntrinsicHeight());
+            drawable_map_1_now.setBounds(0, 0, drawable_map_check.getIntrinsicWidth(), drawable_map_check.getIntrinsicHeight());
         }
 
         @Override
@@ -192,15 +229,21 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
 
         @Override
         public void draw(Canvas canvas) {
-            switch (prc.getState()){
-                case 0:
-                    drawable_map_1.draw(canvas);
-                    pnt.setTextSize(40.0f);
-                    canvas.drawText(Integer.toString(i+1), 20, 45, pnt);
-                    break;
-                case 1:
-                    drawable_map_check.draw(canvas);
-                    break;
+            if(isCurrentMarker == false){
+                switch (prc.getState()){
+                    case 0:
+                        drawable_map_1.draw(canvas);
+                        pnt.setTextSize(40.0f);
+                        canvas.drawText(Integer.toString(i+1), 20, 45, pnt);
+                        break;
+                    case 1:
+                        drawable_map_check.draw(canvas);
+                        break;
+                }
+            }else{
+                drawable_map_1_now.draw(canvas);
+                pnt.setTextSize(40.0f);
+                canvas.drawText(Integer.toString(i+1), 20, 45, pnt);
             }
         }
         @Override
