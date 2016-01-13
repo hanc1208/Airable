@@ -94,8 +94,9 @@ public class DBManager {
             String tel = cursor.getString(6);
             int image = cursor.getInt(7);
             int mark = cursor.getInt(8);
+            int vertexid = cursor.getInt(9);
 
-            Shop tempShop = new Shop (no, title, info, location, floor, time, tel, image, mark);
+            Shop tempShop = new Shop (no, title, info, location, floor, time, tel, image, mark, vertexid);
             shopList.add(tempShop);
         }
 
@@ -121,10 +122,11 @@ public class DBManager {
         String tel = cursor.getString(6);
         int image = cursor.getInt(7);
         int mark = cursor.getInt(8);
+        int vertexid = cursor.getInt(9);
 
         cursor.close();
         db.close();
-        Shop tempShop = new Shop (no, title, info, location, floor, time, tel, image, mark);
+        Shop tempShop = new Shop (no, title, info, location, floor, time, tel, image, mark, vertexid);
 
         return tempShop;
     }

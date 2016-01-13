@@ -82,6 +82,7 @@ public class SearchShopsAdapter extends BaseAdapter {
                 i.putExtra("shopImage", shopList.get(pos).getImage());
                 i.putExtra("shopMark", shopList.get(pos).getMark());
                 i.putExtra("shopNo", shopList.get(pos).getNo());
+                i.putExtra("shopVertexId", shopList.get(pos).getVertexid());
                 ((SearchShopsActivity) context).startActivityForResultWrapper(i);
             }
         });

@@ -10,10 +10,11 @@ public class Shop {
     private String tel;
     private int image;
     private int mark;
+    private int vertexid;
 
     public static int[] shopImageId = {R.drawable.sgen, R.drawable.taco, R.drawable.burger, R.drawable.ricecake, R.drawable.cosmetic, R.drawable.bag};
 
-    public Shop (int no, String title, String info, String location, int floor, String time, String tel, int image, int mark){
+    public Shop (int no, String title, String info, String location, int floor, String time, String tel, int image, int mark, int vertexid){
         this.no = no;
         this.title = title;
         this.info = info;
@@ -23,6 +24,7 @@ public class Shop {
         this.tel = tel;
         this.image = image;
         this.mark = mark;
+        this.vertexid = vertexid;
     }
 
     public int getNo(){
@@ -96,4 +98,8 @@ public class Shop {
     public void setMark(int mark) {
         this.mark = mark;
     }
+
+    public int getVertexid() { return vertexid; }
+
+    public void setVertexid(int vertexid){ this.vertexid = vertexid; }
 }
