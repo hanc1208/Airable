@@ -33,8 +33,9 @@ public class DBManager {
             String placeName = cursor.getString(3);
             String description = cursor.getString(4);
             int state = cursor.getInt(5);
+            int vertexid = cursor.getInt(6);
 
-            Process process = new Process(no, name, time, placeName, description, state);
+            Process process = new Process(no, name, time, placeName, description, state, vertexid);
             processList.add(process);
         }
 
@@ -57,16 +58,17 @@ public class DBManager {
         String placeName = cursor.getString(3);
         String description = cursor.getString(4);
         int state = cursor.getInt(5);
+        int vertexid = cursor.getInt(6);
 
         cursor.close();
         db.close();
-        Process process = new Process(no, name, time, placeName, description, state);
+        Process process = new Process(no, name, time, placeName, description, state, vertexid);
 
         return process;
     }
 
     public void changeProcessState(int no, int state) {
-        String query = "UPDATE process SET state=" + state + "WHERE no=" + no;
+        String query = "UPDATE process SET state=" + state + " WHERE no=" + no;
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL(query);

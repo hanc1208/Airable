@@ -10,18 +10,20 @@ public class Process {
     private String placeName;
     private String description;
     private int state;
+    private int vertexid;
 
     public static final int INCLUDE_PROCESS = 0;
     public static final int EXCLUDE_PROCESS = -1;
     public static final int PASSED_PROCESS = 1;
 
-    public Process (int no, String name, int time, String placeName, String description, int state) {
+    public Process (int no, String name, int time, String placeName, String description, int state, int vertexid) {
         this.no = no;
         this.name = name;
         this.time = time;
         this.placeName = placeName;
         this.description = description;
         this.state = state;
+        this.vertexid = vertexid;
     }
 
     public int getNo() {
@@ -50,5 +52,9 @@ public class Process {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public int getVertexid() {
+        return vertexid;
     }
 }
