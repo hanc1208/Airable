@@ -121,14 +121,11 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         // View pager 세팅
         pager.setAdapter(new adapter(getSupportFragmentManager()));
         pager.addOnPageChangeListener(new PageListener());
-
-        // Toolbar에 있는 시간 바꾸기
-        toolbarTextview.setText("time"); // Test
     }
 
     @OnClick(R.id.map_slide_search_button)
     public void onMapProcessSearchClick(){
-        Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.map_slide_current_point_button)
@@ -166,6 +163,8 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
                 path.putMarker(prc.getVertexid(), tempDraw);
             }
         }//for
+
+        mapView.invalidate();
     }
 
 
