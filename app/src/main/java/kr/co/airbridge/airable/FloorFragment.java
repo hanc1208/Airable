@@ -181,6 +181,12 @@ public class FloorFragment extends Fragment {
 
     @OnClick(R.id.floor_select_curpoint_button)
     public void onFloorSelectCurpointClick(){
+        FloorButtonListener curAct = (FloorButtonListener)getActivity();
+        curAct.setCurFloor(40);
 
+        FragmentManager curFragMan = getActivity().getFragmentManager();
+        curFragMan.beginTransaction()
+                .remove(curFragMan.findFragmentByTag("FLOOR_FRAGMENT"))
+                .commit();
     }
 }

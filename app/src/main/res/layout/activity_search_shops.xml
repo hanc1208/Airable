@@ -27,7 +27,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp">
 
                     <EditText
                         android:id="@+id/searchshops_edittext"
@@ -69,7 +70,8 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="37dp">
+            android:layout_height="37dp"
+            android:background="#ffffff">
 
             <ImageButton
                 android:id="@+id/searchshops_map_button"
@@ -122,7 +124,8 @@
             android:id="@+id/searchshops_listview"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="#ffffff" />
 
 
     </LinearLayout>

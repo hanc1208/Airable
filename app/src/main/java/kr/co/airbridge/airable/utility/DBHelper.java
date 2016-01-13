@@ -51,7 +51,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO shop VALUES(10, 'Travel Air', '가방, 샌들 등의 여행용품, 벨트, 지갑, 핸드백등의 피혁제품', '(여객터미널) 지하 1층 서편', 20, '09 : 00 ~ 20 : 00', '032-743-8483', 5, 0)");
         db.execSQL("INSERT INTO shop VALUES(11, '샘소나이트', '여행용 가방, 여행용품', '(여객터미널) 3층 체크인카운터 G 부근', 23, '06 : 30 ~ 21 : 00', '032-743-2366', 5, 0)");
         db.execSQL("INSERT INTO shop VALUES(12, '샌디캐스트', '반려동물 조각품', '교통센터 중앙', 10, '07 : 00 ~ 21 : 00', '032-743-7032', 5, 0)");
-        db.execSQL("INSERT INTO shop VALUES(13, '샌디캐스트', '반려동물 조각품', '교통센터 중앙', 10, '07 : 00 ~ 21 : 00', '032-743-7032', 0, 0)");
+        db.execSQL("INSERT INTO shop VALUES(13, '에스젠1', '지상 최대의 소프트웨어 멤버-쉽', '향군타워', 40, '00 : 00 ~ 24 : 00', '010-3382-9303', 0, 0)");
+        db.execSQL("INSERT INTO shop VALUES(14, '에스젠2', '지상 최대의 소프트웨어 멤버-쉽', '향군타워', 40, '00 : 00 ~ 24 : 00', '010-3382-9304', 0, 0)");
     }
 
     @Override

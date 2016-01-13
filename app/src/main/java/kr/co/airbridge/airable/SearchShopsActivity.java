@@ -129,7 +129,6 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
         try {
             viewer = (FloorFragment) getFragmentManager().findFragmentByTag("FLOOR_FRAGMENT");
             viewer.floorButtonClick(view);
-            Log.i("mytag", "onFloorSelectClick");
         } catch (ClassCastException e) {
             Log.i("mytag", e.getMessage());
         }

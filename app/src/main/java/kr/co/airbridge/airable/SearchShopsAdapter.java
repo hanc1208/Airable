@@ -92,7 +92,6 @@ public class SearchShopsAdapter extends BaseAdapter {
         int imageResource;
         try{
             imageResource = Shop.shopImageId[shopList.get(pos).getImage()];
-            Log.i("mytag", "Check image resource : "+shopList.get(pos).getImage());
         }catch(Exception e){
             imageResource = R.drawable.user_image_default;
             Log.e("exception", e.getMessage());
