@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:descendantFocusability="blocksDescendants"
+    android:weightSum="4">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:descendantFocusability="blocksDescendants"
+        android:id="@+id/my_air_info_list_re1"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginLeft="16dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00 : 10"
+                android:id="@+id/my_air_info_list_time"
+                android:textColor="#263238"
+                android:textSize="16sp"
+                android:layout_marginLeft="3dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textIsSelectable="false"/>
+            <View
+                android:layout_width="54dp"
+                android:layout_height="1dp"
+                android:background="#ff0000"
+                android:id="@+id/my_air_info_list_stroke"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_alignTop="@+id/my_air_info_list_time"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00 : 20"
+                android:id="@+id/my_air_info_list_time_change"
+                android:layout_below="@+id/my_air_info_list_time"
+                android:layout_marginTop="4dp"
+                android:textColor="#d50000"
+                android:textSize="16sp"
+                android:layout_marginLeft="3dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textIsSelectable="false" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/my_air_info_list_re1"
+        android:layout_toRightOf="@+id/my_air_info_list_re1"
+        android:id="@+id/my_air_info_list_re2"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginLeft="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/my_air_info_list_air_num"
+            android:textColor="#575757"
+            android:textSize="16sp"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textIsSelectable="false" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/my_air_info_list_remark"
+            android:layout_below="@+id/my_air_info_list_air_num"
+            android:layout_marginTop="4dp"
+            android:textColor="#d50000"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textIsSelectable="false"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_centerVertical="true"
+
+        android:descendantFocusability="blocksDescendants"
+        android:layout_weight="1"
+        android:layout_marginLeft="180dp"
+        android:layout_alignParentRight="false"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="암스테르담"
+            android:id="@+id/my_air_info_list_city"
+            android:textColor="#263238"
+            android:textSize="16sp"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textIsSelectable="false"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginRight="16dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/my_air_info_list_check"
+                android:textColor="#263238"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22"
+                android:id="@+id/my_air_info_list_gate"
+                android:textColor="#263238"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

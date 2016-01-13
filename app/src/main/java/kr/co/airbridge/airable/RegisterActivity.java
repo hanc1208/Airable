@@ -3,6 +3,7 @@ package kr.co.airbridge.airable;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -33,7 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
 
-
+                        Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(loginIntent);
                     }
 
                     @Override
@@ -43,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(FacebookException exception) {
-
+                        Toast.makeText(getApplicationContext(), "인터넷 연결을 확인해주세요", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

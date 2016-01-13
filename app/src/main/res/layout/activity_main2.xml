@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+<android.support.design.widget.AppBarLayout
+    android:id="@+id/appbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/collapsing_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:contentScrim="#ffffff"
+        app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
+        app:collapsedTitleTextAppearance="@style/CollapsingToolbarLayoutCollapsedTextStyle"
+        app:collapsedTitleGravity="center"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <LinearLayout
+            android:id="@+id/header"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:background="#ffffff">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:background="@drawable/bg_2">
+            <ImageView
+                android:id="@+id/main_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu"/>
+            <ImageView
+                android:id="@+id/main_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/spot_ic"
+                android:layout_alignParentRight="true"/>
+            <ImageView
+                android:id="@+id/main_flight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/flight_img_2"
+                android:layout_centerHorizontal="true"/>
+
+            <kr.co.airbridge.airable.utility.CircularProgressBar
+                android:id="@+id/main_circularprogress"
+                android:layout_width="158dp"
+                android:layout_height="158dp"
+                android:layout_below="@id/main_flight"
+                android:layout_centerHorizontal="true"
+                />
+            <ImageView
+                android:id="@+id/circle_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/deadline"
+                android:layout_below="@id/main_flight"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/circle_lefttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2h 31min"
+                android:layout_below="@id/circle_deadline"
+                android:layout_marginTop="9dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff"
+                android:textSize="30dp"
+                />
+            <TextView
+                android:id="@+id/circle_flight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BA5405"
+                android:layout_below="@id/circle_lefttime"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff"
+                android:textSize="13dp"/>
+        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/main_expectedtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginBottom="25dp"
+                    android:text="예상소요시간 1시간 50분"
+                    android:textColor="#000000"/>
+                <GridView
+                    android:id="@+id/main_process_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="276dp"
+                    android:layout_marginBottom="27dp"
+                    android:numColumns="4"
+                    android:smoothScrollbar="true"
+                    android:stretchMode="columnWidth"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="7dp"
+                    android:verticalSpacing="27dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/anim_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="35.5dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.CollapsingToolbarLayout>
+</android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/flight_process_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:scrollingCache="false"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:background="#ffffff" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:clickable="true"
+        android:src="@drawable/pop"
+        android:layout_gravity="bottom|right|end"
+        app:backgroundTint="#01579B"/>
+</android.support.design.widget.CoordinatorLayout>
+
+
