@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/map_slide_childview_linear">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map_slide_childview_process_title"
+            android:id="@+id/map_slide_childview_title_textview"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="11dp"
+            android:textStyle="bold"
+            android:textColor="#263238"
+            android:textSize="17.5sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map_slide_childview_process_detail"
+            android:id="@+id/map_slide_childview_detail_textview"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="11dp"
+            android:lines="2"
+            android:textColor="#263238"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map_slide_childview_process_location"
+            android:id="@+id/map_slide_childview_location_textview"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="15sp"
+            android:textColor="#03a9f4" />
+
+    </LinearLayout>
+</LinearLayout>
