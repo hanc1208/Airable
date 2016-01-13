@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="86dp"
+    android:descendantFocusability="blocksDescendants">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/air_list_re1"
+        android:descendantFocusability="blocksDescendants">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:descendantFocusability="blocksDescendants">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00 : 10"
+                android:id="@+id/air_info_list_time"
+                android:layout_centerVertical="true"
+                android:textColor="#40c4ff"
+                android:textSize="16sp"
+                android:layout_marginLeft="3dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textIsSelectable="false"/>
+            <View
+                android:layout_width="54dp"
+                android:layout_height="1dp"
+                android:background="#ff0000"
+                android:layout_centerVertical="true"
+                android:id="@+id/air_info_list_stroke"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00 : 20"
+                android:id="@+id/air_info_list_time_change"
+                android:layout_below="@+id/air_info_list_time"
+                android:layout_marginTop="4dp"
+                android:textColor="#d50000"
+                android:textSize="16sp"
+                android:layout_marginLeft="3dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textIsSelectable="false" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/air_list_re1"
+        android:layout_toRightOf="@+id/air_list_re1"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/air_list_re2"
+        android:descendantFocusability="blocksDescendants">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/air_info_list_air_num"
+                android:layout_centerVertical="true"
+                android:textColor="#575757"
+                android:textSize="18sp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textIsSelectable="false" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/air_info_list_airport"
+                android:layout_below="@+id/air_info_list_air_num"
+                android:layout_marginTop="8dp"
+                android:textColor="#b0b2c5"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textIsSelectable="false" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_centerVertical="true"
+
+        android:layout_toEndOf="@+id/air_list_re2"
+        android:layout_toRightOf="@+id/air_list_re2"
+        android:layout_marginLeft="30dp"
+        android:descendantFocusability="blocksDescendants">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="암스테르담"
+            android:id="@+id/air_info_list_city"
+            android:textColor="#40c4ff"
+            android:textSize="18sp"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textIsSelectable="false"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:descendantFocusability="blocksDescendants">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/air_info_list_button"
+            android:src="@drawable/detail_btn"
+            android:background="#00000000"
+            android:layout_gravity="right"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,8 +1,5 @@
 package kr.co.airbridge.airable;
 
-/**
- * Created by pso99_000 on 2015-12-12.
- */
 public class ArrivalFlight {
     // 모든 변수명은 '인천국제공항공사 OpenAPI'의 변수명과 동일합니다.
     private String airline;               //항공사 - e.g.대한항공

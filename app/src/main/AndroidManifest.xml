@@ -50,7 +50,6 @@
         <activity
             android:name=".AddTravelOptionsActivity"
             android:label="@string/title_activity_add_travel_options">
-
         </activity>
         <activity
             android:name=".RegisterActivity"
@@ -68,9 +67,31 @@
         <activity android:name=".MapProcessActivity"
             android:label="@string/title_activity_map_process">
         </activity>
+        <activity android:name=".SearchAirInfoActivity"
+            android:label="@string/title_activity_search_air_info">
+
+        </activity>
+        <activity android:name=".AirInfoListActivity"
+            android:label="@string/title_activity_air_info_list">
+
+        </activity>
         <activity
-            android:name=".RegisterActivity"
-            android:label="@string/title_activity_register">
+            android:name=".TicketInfoActivity"
+            android:label="@string/title_activity_my_ticket_info" >
+        </activity>
+
+        <activity
+            android:name=".StartActivity"
+            android:label="@string/title_activity_start">
+
+        </activity>
+        <activity android:name=".MyAirActivity" android:label="내 항공편">
+
+        </activity>
+        <activity android:name=".MyInfoDepartureTabActivity">
+
+        </activity>
+        <activity android:name=".MyInfoArrivalTabActivity">
 
         </activity>
     </application>

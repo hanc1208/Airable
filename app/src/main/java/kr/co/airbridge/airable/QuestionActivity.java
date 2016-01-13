@@ -1,5 +1,6 @@
 package kr.co.airbridge.airable;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,13 +17,17 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kr.co.airbridge.airable.model.*;
+import kr.co.airbridge.airable.model.Process;
 import kr.co.airbridge.airable.utility.ActivityUtility;
+import kr.co.airbridge.airable.utility.DBManager;
 
 public class QuestionActivity extends AppCompatActivity {
 
     private List<Question> questions;
     private List<Question> answeredQuestions = new ArrayList<>();
     private Question currentQuestion;
+    private DBManager dbManager;
 
     @Bind(R.id.question_progress_bar)
     ProgressBar progressBar;
@@ -55,8 +60,11 @@ public class QuestionActivity extends AppCompatActivity {
         ActivityUtility activityUtility = new ActivityUtility(this);
         activityUtility.setToolbar(R.id.toolbar);
         activityUtility.setNavigationAsBack();
+        dbManager = new DBManager(this);
 
-        String json = "[{\"id\":1,\"content\":\"1 + 1 = 2?\",\"nextWhenYes\":2,\"nextWhenNo\":7,\"nextWhenSkip\":7},{\"id\":2,\"content\":\"2 + 2 = 4?\",\"nextWhenYes\":3,\"nextWhenNo\":7,\"nextWhenSkip\":7},{\"id\":3,\"content\":\"3 + 3 = 6?\",\"nextWhenYes\":4,\"nextWhenNo\":7,\"nextWhenSkip\":7},{\"id\":4,\"content\":\"4 + 4 = 8?\",\"nextWhenYes\":5,\"nextWhenNo\":7,\"nextWhenSkip\":7},{\"id\":5,\"content\":\"5 + 5 = 10?\",\"nextWhenYes\":6,\"nextWhenNo\":7,\"nextWhenSkip\":7},{\"id\":6,\"content\":\"6 + 6 = 12?\",\"nextWhenYes\":9,\"nextWhenNo\":7,\"nextWhenSkip\":7},{\"id\":7,\"content\":\"바보?\",\"nextWhenYes\":8,\"nextWhenNo\":9,\"nextWhenSkip\":8},{\"id\":8,\"content\":\"당신은 여행을 할 수 없습니다.\",\"nextWhenYes\":-1,\"nextWhenNo\":-1,\"nextWhenSkip\":-1},{\"id\":9,\"content\":\"당신은 여행을 할 수 있습니다.\",\"nextWhenYes\":-1,\"nextWhenNo\":-1,\"nextWhenSkip\":-1}]";
+        String json = "[{\"id\":1,\"content\":\"도심 공항 터미널을 거쳐 공항으로 오거나 Fasttrack 이용 대상자이십니까?\",\"nextWhenYes\":2,\"nextWhenNo\":2,\"nextWhenSkip\":-1}," +
+                "{\"id\":2,\"content\":\"무게 50kg 이상 또는 가로 45cm, 세로 90cm, 높이 70cm 이상의 짐을 가지고 가시나요?\",\"nextWhenYes\":3,\"nextWhenNo\":3,\"nextWhenSkip\":-1}," +
+                "{\"id\":3,\"content\":\"미화 1만 불 이상의 여행경비나 귀중품을 휴대 반출 하시나요?\",\"nextWhenYes\":-1,\"nextWhenNo\":-1,\"nextWhenSkip\":-1}]";
         questions = new Gson().fromJson(json, new TypeToken<List<Question>>() {}.getType());
 
         setCurrentQuestion(questions.get(0));
@@ -105,9 +113,35 @@ public class QuestionActivity extends AppCompatActivity {
         answeredQuestions.add(currentQuestion);
         switch (currentQuestion.getAnswer()) {
             case YES:
+                switch (currentQuestion.getId()) {
+                    case 1:
+                        dbManager.changeProcessState(15, Process.EXCLUDE_PROCESS);
+                        dbManager.changeProcessState(16, Process.EXCLUDE_PROCESS);
+                        dbManager.changeProcessState(17, Process.INCLUDE_PROCESS);
+                        break;
+                    case 2:
+                        dbManager.changeProcessState(11, Process.INCLUDE_PROCESS);
+                        break;
+                    case 3:
+                        dbManager.changeProcessState(10, Process.INCLUDE_PROCESS);
+                        break;
+                }
                 setCurrentQuestion(getQuestionById(currentQuestion.getNextWhenYes()));
                 break;
             case NO:
+                switch (currentQuestion.getId()) {
+                    case 1:
+                        dbManager.changeProcessState(15, Process.INCLUDE_PROCESS);
+                        dbManager.changeProcessState(16, Process.INCLUDE_PROCESS);
+                        dbManager.changeProcessState(17, Process.EXCLUDE_PROCESS);
+                        break;
+                    case 2:
+                        dbManager.changeProcessState(11, Process.EXCLUDE_PROCESS);
+                        break;
+                    case 3:
+                        dbManager.changeProcessState(10, Process.EXCLUDE_PROCESS);
+                        break;
+                }
                 setCurrentQuestion(getQuestionById(currentQuestion.getNextWhenNo()));
                 break;
         }
@@ -134,7 +168,15 @@ public class QuestionActivity extends AppCompatActivity {
 
     public void setCurrentQuestion(Question currentQuestion) {
         this.currentQuestion = currentQuestion;
-        updateLayout();
+
+        if (currentQuestion == null) {
+            Intent addOptionsIntent = new Intent(this, AddTravelOptionsActivity.class);
+            addOptionsIntent.putExtra("requestCode", 0);
+            startActivity(addOptionsIntent);
+            finish();
+        } else {
+            updateLayout();
+        }
     }
 
     public void updateLayout() {

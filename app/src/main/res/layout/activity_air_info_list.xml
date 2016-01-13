@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/air_info_list_toolbar"
+        layout="@layout/toolbar"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eceff1"
+        android:layout_below="@+id/air_info_list_toolbar"
+        />
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/air_info_listview"
+        android:layout_gravity="center_horizontal"
+        android:divider="#c2c2c2"
+        android:dividerHeight="0.5dp" />
+
+
+</LinearLayout>
