@@ -56,6 +56,7 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
     int curPageNum = 0;
     ArrayList<Process> processList;
     DBManager dbManager;
+    int firstPageNum = 0;
 
     CurrentPositionReceiver currentPositionReceiver;
 
@@ -85,9 +86,18 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         processList = new ArrayList<Process>();
         ArrayList<Process> tempArr = dbManager.getProcessList();
 
+        int firstPageNo = -1;
+        Intent intentTemp = getIntent();
+        firstPageNo = intentTemp.getIntExtra("processNum", -1);
+
+        int a = 0;
         for(Process tempPrc : tempArr){
-            if(tempPrc.getState() != -1)
+            if(tempPrc.getState() != -1){
                 processList.add(tempPrc);
+                if(firstPageNo != -1 && firstPageNo == tempPrc.getNo())
+                    firstPageNum = a;
+                a++;
+            }
         }
 
         pageCount = processList.size();
@@ -126,6 +136,8 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         pager.setAdapter(new adapter(getSupportFragmentManager()));
         pager.addOnPageChangeListener(new PageListener());
 
+
+        pager.setCurrentItem(curPageNum);
     }
 
     @OnClick(R.id.map_slide_search_button)
