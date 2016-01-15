@@ -2,25 +2,44 @@ package kr.co.airbridge.airable;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import kr.co.airbridge.airable.utility.ActivityUtility;
+import kr.co.airbridge.airable.utility.DBManager;
 
 public class SearchMapActivity extends AppCompatActivity implements FloorButtonListener{
     @Bind(R.id.search_map_floor_button)
     Button searchMapFloor;
+    @Bind(R.id.search_map_viewpager)
+    ViewPager pager;
+    @Bind(R.id.search_map_search_button)
+    ImageButton searchButton;
 
     Bundle bundle;
     String searchKeyword;
+    int pageCount = 0;
     int curFloor = -1;
     FragmentManager fragmentManager;
+    int curPageNum = 0;
+    ArrayList<Shop> permanentShopList;
+    ArrayList<Shop> shopList;
+    DBManager dbManager;
+    Fragment curFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +53,9 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
 
         ButterKnife.bind(this);
 
+        dbManager = new DBManager(this);
+        permanentShopList = dbManager.getShopList();
+
         bundle = getIntent().getExtras();
         if(bundle.getString("searchkeyword")!=null) {
             searchKeyword = bundle.getString("searchkeyword");
@@ -44,6 +66,31 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
         }
         setCurFloor(curFloor);
         Log.i("mytag", "Search Keyword : " + searchKeyword); // Intent getExtra test
+
+        // Shop list
+        updateShopList();
+
+        // View pager 세팅
+        pager.setAdapter(new adapter(getSupportFragmentManager()));
+        pager.addOnPageChangeListener(new PageListener());
+
+        // Search button 비활성화
+        searchButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void updateShopList(){
+        shopList = new ArrayList<Shop>();
+        for(Shop s : permanentShopList){
+            if(s.getInfo().contains(searchKeyword) || s.getTitle().contains(searchKeyword)){
+                if(curFloor == -1){
+                    shopList.add(s);
+                }else if(s.getFloor() == curFloor){
+                    shopList.add(s);
+                }
+            }
+        }
+        pageCount = shopList.size();
+
     }
 
     @Override
@@ -112,7 +159,12 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
                 tempStr = "ALL";
                 break;
         }
+        updateShopList();
         searchMapFloor.setText(tempStr);
+        curPageNum = 0;
+        curFragment = null;
+        pager.setAdapter(new adapter(getSupportFragmentManager()));
+        pager.getAdapter().notifyDataSetChanged();
     }
 
     @OnClick(R.id.search_map_floor_button)
@@ -136,13 +188,38 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
         Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show(); // Test
     }
 
-    @OnClick(R.id.search_map_curshop_mark)
-    public void onCurshopMarkClick(){
-        Toast.makeText(getApplicationContext(), "Mark", Toast.LENGTH_SHORT).show(); // Test
+    private class PageListener extends ViewPager.SimpleOnPageChangeListener {
+        public void onPageSelected(int position) {
+            curPageNum = position;
+            //putCurMarker();
+        }
     }
 
-    @OnClick(R.id.search_map_curshop_call)
-    public void onCurshopCallClick(){
-        Toast.makeText(getApplicationContext(), "Call", Toast.LENGTH_SHORT).show(); // Test
+    private class adapter extends FragmentStatePagerAdapter {
+        public adapter(android.support.v4.app.FragmentManager fm){ super(fm); }
+
+        @Override
+        public Fragment getItem(int position){
+            if(position >= 0 && position < shopList.size()){
+                Shop curShop = shopList.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putString("title", curShop.getTitle());
+                bundle.putString("time", curShop.getTime());
+                bundle.putString("location", curShop.getLocation());
+                bundle.putString("tel", curShop.getTel());
+                curFragment = new SearchMapSubpage();
+                curFragment.setArguments(bundle);
+            }
+            return curFragment;
+        }
+
+        @Override
+        public int getCount() { return pageCount; }
+
+        @Override
+        public int getItemPosition(Object item) {
+            return POSITION_NONE;
+        }
+
     }
 }

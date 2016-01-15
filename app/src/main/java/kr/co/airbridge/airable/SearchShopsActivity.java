@@ -100,7 +100,7 @@ public class SearchShopsActivity extends AppCompatActivity implements FloorButto
     }
 
     // EditText에서 Search Action 발생 시, 장소를 검색하는 Method.
-    public void SearchShops() {
+    void SearchShops() {
         shopList = dbManager.getShopList();
         String searchText = edittext.getText().toString();
 

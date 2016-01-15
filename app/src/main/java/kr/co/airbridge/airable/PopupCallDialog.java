@@ -18,6 +18,7 @@ public class PopupCallDialog extends Dialog{
     View.OnClickListener yesListener;
     View.OnClickListener cancelListener;
     String tel;
+    String store;
 
     @Bind(R.id.popup_button_call_yes)
     Button btnYes;
@@ -25,13 +26,16 @@ public class PopupCallDialog extends Dialog{
     Button btnCancel;
     @Bind(R.id.popup_textview_call_number)
     TextView textTel;
+    @Bind(R.id.popup_textview_call_store)
+    TextView textStore;
 
-    public PopupCallDialog(Context context, View.OnClickListener yesListener, View.OnClickListener cancelListener, String tel){
+    public PopupCallDialog(Context context, View.OnClickListener yesListener, View.OnClickListener cancelListener, String tel, String store){
         super(context);
         super.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         this.yesListener = yesListener;
         this.cancelListener = cancelListener;
         this.tel = tel;
+        this.store = store;
     }
 
     @Override
@@ -44,6 +48,7 @@ public class PopupCallDialog extends Dialog{
             btnYes.setOnClickListener(yesListener);
             btnCancel.setOnClickListener(cancelListener);
             textTel.setText(tel);
+            textStore.setText(store);
         }
     }
 }

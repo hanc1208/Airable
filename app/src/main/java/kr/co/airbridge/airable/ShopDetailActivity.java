@@ -128,7 +128,7 @@ public class ShopDetailActivity extends AppCompatActivity {
     // 전화 걸기 버튼 클릭 이벤트
     public void onCallClicked() {
         popupCallDialog =
-                new PopupCallDialog(this, popupCallYesListener, popupCallCancelListener, extras.getString("shopTel"));
+                new PopupCallDialog(this, popupCallYesListener, popupCallCancelListener, extras.getString("shopTel"), extras.getString("shopTitle"));
         popupCallDialog.show();
     }
 

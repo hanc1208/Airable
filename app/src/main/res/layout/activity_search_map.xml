@@ -109,78 +109,15 @@
                 android:layout_above="@+id/search_map_info_linear"
                 android:background="#c2c2c2" />
 
-            <RelativeLayout
-                android:id="@+id/search_map_info_linear"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/search_map_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="129dp"
+                android:background="#FFFFFF"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:background="#FFFFFF">
-
-                <TextView
-                    android:id="@+id/search_map_curshop_title_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="11dp"
-                    android:text="@string/search_map_curshop_title"
-                    android:textColor="#263238"
-                    android:textSize="17.5sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/search_map_curshop_time_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/search_map_curshop_title_textview"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="11dp"
-                    android:text="@string/search_map_curshop_time"
-                    android:textColor="#263238"
-                    android:textSize="12.5sp" />
-
-                <TextView
-                    android:id="@+id/search_map_curshop_location_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/search_map_curshop_time_textview"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignStart="@+id/search_map_curshop_time_textview"
-                    android:layout_marginBottom="20dp"
-                    android:text="@string/search_map_curshop_location"
-                    android:textColor="#03a9f4"
-                    android:textSize="15dp" />
-
-                <ImageButton
-                    android:id="@+id/search_map_curshop_call"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="8dp"
-                    android:background="#00000000"
-                    android:src="@drawable/call" />
-
-                <ImageButton
-                    android:id="@+id/search_map_curshop_mark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_toLeftOf="@+id/search_map_curshop_call"
-                    android:layout_toStartOf="@+id/search_map_curshop_call"
-                    android:background="#00000000"
-                    android:src="@drawable/mark" />
-            </RelativeLayout>
+                android:layout_alignParentStart="true">
+            </android.support.v4.view.ViewPager>
 
         </RelativeLayout>
     </LinearLayout>
