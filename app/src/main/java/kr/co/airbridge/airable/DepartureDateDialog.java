@@ -4,12 +4,18 @@ package kr.co.airbridge.airable;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,16 +54,15 @@ public class DepartureDateDialog extends Dialog{
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), R.layout.tab_list_textview);
 
 
+
         // 아이템을 추가
-        adapter.add("item1");
-        adapter.add("item2");
-        adapter.add("item3");
-        adapter.add("item4");
-        adapter.add("item5");
-        adapter.add("item6");
-        adapter.add("item7");
-        adapter.add("item8");
-        adapter.add("item9");
+        adapter.add("2016.01.16.토");
+        adapter.add("2016.01.17.일");
+        adapter.add("2016.01.18.월");
+        adapter.add("2016.01.19.화");
+        adapter.add("2016.01.20.수");
+        adapter.add("2016.01.21.목");
+        adapter.add("2016.01.22.금");
 
         // ListView 가져오기
         ListView listView = (ListView) findViewById(R.id.departure_date_listview);

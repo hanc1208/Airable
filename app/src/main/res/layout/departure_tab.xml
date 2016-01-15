@@ -97,7 +97,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText2"
+                android:id="@+id/departure_edit_ticketnum"
                 android:textSize="14dp"
                 android:hint="@string/departure_tab_air_num_hint"
                 android:textColorHint="#B0BEC5"

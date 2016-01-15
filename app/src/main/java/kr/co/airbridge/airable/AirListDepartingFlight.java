@@ -1,41 +1,52 @@
 package kr.co.airbridge.airable;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
-
-@Root(name = "item")
-public class DepartureFlight {
+public class AirListDepartingFlight {
     // 모든 변수명은 '인천국제공항공사 OpenAPI'의 변수명과 동일합니다.
-    @Element(name = "airline", required=false)
     private String airline;               //항공사 - e.g.대한항공
-    @Element(name = "airport", required=false)
-    private String airport;               // 도착지공함 - e.g. 두바이
-    @Element(name = "airportcode", required=false)
-    private String airportCode;               // 도착지공함 - e.g. 두바이
-    @Element(name = "flightId", required=false)
     private String flightId;              //항공 편명 - e.g. KE951Y
-    @Element(name = "scheduleDateTime", required=false)
-    private String scheduleDateTime;    // 도착예정시간 - e.g. 0005
-    @Element(name = "estimatedDateTime", required=false)
-    private String estimatedDateTime;   // 도착변경시간 - e.g. 0002
-    @Element(name = "chkinrange", required=false)
+    private String scheduleDataTime;    // 도착예정시간 - e.g. 0005
+    private String estimatedDataTime;   // 도착변경시간 - e.g. 0002
+    private String airport;               // 도착지공함 - e.g. 두바이
     private String chkinrange;           // 체크인 카운터 - e.g. H25-H36
-    @Element(name = "gatenumber", required=false)
     private String gatenumber;           // 탑승구 번호 - e.g. 122
-    @Element(name = "remark", required=false)
     private String remark;                // 운항상태 (출발, 결항, 지연, 탑승중, 마감예정, 탑승마감, 탑승준비) - e.g. 출발
+    private String airport_code;
 
-    public DepartureFlight(String mTime, String mTimeChange, String mCity, String mAirNum, String mremark, String mchkinrage, String mgatenumber){
-        this.scheduleDateTime=mTime;
-        this.estimatedDateTime=mTimeChange;
+    private String rawdate;
+
+
+
+
+    public AirListDepartingFlight(String mTime, String mTimeChange, String mCity, String mAirNum, String mAirPort,String mchkinrange,String mgatenumber,String mairport_code,String rawtime){
+        this.scheduleDataTime=mTime;
+        this.estimatedDataTime=mTimeChange;
         this.airport=mCity;
         this.flightId=mAirNum;
-        this.chkinrange=mchkinrage;
+        this.airline=mAirPort;
+        this.chkinrange=mchkinrange;
         this.gatenumber=mgatenumber;
-        this.remark=mremark;
+        this.airport_code=mairport_code;
+        this.rawdate =rawtime;
     }
-    public DepartureFlight(){}
+    public AirListDepartingFlight(){}
 
+
+    public String getRawdate() {
+        return rawdate;
+    }
+
+    public void setRawdate(String rawdate) {
+        this.rawdate = rawdate;
+    }
+
+
+    public String getAirport_code() {
+        return airport_code;
+    }
+
+    public void setAirport_code(String airport_code) {
+        this.airport_code = airport_code;
+    }
 
     public String getAirline() {
         return airline;
@@ -54,19 +65,19 @@ public class DepartureFlight {
     }
 
     public String getScheduleDataTime() {
-        return scheduleDateTime;
+        return scheduleDataTime;
     }
 
-    public void setScheduleDataTime(String scheduleDateTime) {
-        this.scheduleDateTime = scheduleDateTime;
+    public void setScheduleDataTime(String scheduleDataTime) {
+        this.scheduleDataTime = scheduleDataTime;
     }
 
     public String getEstimatedDataTime() {
-        return estimatedDateTime;
+        return estimatedDataTime;
     }
 
-    public void setEstimatedDataTime(String estimatedDateTime) {
-        this.estimatedDateTime = estimatedDateTime;
+    public void setEstimatedDataTime(String estimatedDataTime) {
+        this.estimatedDataTime = estimatedDataTime;
     }
 
     public String getAirport() {
@@ -100,8 +111,4 @@ public class DepartureFlight {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
-    public String getAirportCode() { return airportCode; }
-
-    public void setAirportCode(String airportcode) { this.airportCode = airportcode; }
 }

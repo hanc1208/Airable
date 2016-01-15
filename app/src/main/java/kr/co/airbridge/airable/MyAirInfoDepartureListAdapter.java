@@ -1,6 +1,7 @@
 package kr.co.airbridge.airable;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,10 @@ import java.util.ArrayList;
 public class MyAirInfoDepartureListAdapter extends BaseAdapter{
 
     // 문자열을 보관 할 ArrayList
-    private ArrayList<DepartureFlight> m_List;
+    private ArrayList<MyAirListDepartureFlight> m_List;
 
     // 생성자
-    public MyAirInfoDepartureListAdapter(ArrayList<DepartureFlight> m_List) {
+    public MyAirInfoDepartureListAdapter(ArrayList<MyAirListDepartureFlight> m_List) {
         this.m_List=m_List;
     }
 
@@ -89,6 +90,8 @@ public class MyAirInfoDepartureListAdapter extends BaseAdapter{
             mremark=holder.mlist_remark;
         }
 
+
+
         // Text 등록
         mtime.setText(m_List.get(position).getScheduleDataTime());
         mtimechange.setText(m_List.get(position).getEstimatedDataTime());
@@ -98,6 +101,17 @@ public class MyAirInfoDepartureListAdapter extends BaseAdapter{
         mgate.setText(m_List.get(position).getGatenumber());
         mremark.setText(m_List.get(position).getRemark());
 
+       /* if(mtimechange.getText().toString().equals("")){
+            View viewStroke = convertView.findViewById(R.id.my_air_info_list_stroke);
+            viewStroke.setBackgroundColor(Color.parseColor("#00000000"));
+            viewStroke.setVisibility(View.INVISIBLE);
+        }*/
+        if(mtime.getText().toString().equals(mtimechange.getText().toString())){
+            View viewStroke = convertView.findViewById(R.id.my_air_info_list_stroke);
+            viewStroke.setBackgroundColor(Color.parseColor("#00000000"));
+            viewStroke.setVisibility(View.INVISIBLE);
+            mtimechange.setVisibility(View.INVISIBLE);
+        }
         /*
         // 버튼 이벤트 등록
         btn.setOnClickListener(new View.OnClickListener() {

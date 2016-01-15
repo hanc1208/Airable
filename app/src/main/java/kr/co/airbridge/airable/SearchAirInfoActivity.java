@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,6 +20,9 @@ import android.widget.TextView;
 import java.io.Serializable;
 
 import kr.co.airbridge.airable.utility.ActivityUtility;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class SearchAirInfoActivity extends AppCompatActivity {
 
@@ -37,9 +41,12 @@ public class SearchAirInfoActivity extends AppCompatActivity {
     private ArrivalCityDialog cACustomDialog;
     private ArrivalAirportDialog aACustomDialog;
 
+    AirportCodeModel airportCodeModel = null;
 
     int departure_city=0;
     int arrival_city=0;
+
+    RetrofitServer retrofitServer = new RetrofitServer(1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +90,8 @@ public class SearchAirInfoActivity extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
+
+
 
 
     }
@@ -152,10 +161,21 @@ public class SearchAirInfoActivity extends AppCompatActivity {
 
             TextView date = (TextView) findViewById(R.id.departure_date_textview);
             TextView city = (TextView) findViewById(R.id.departure_city_textview);
+            EditText ticketnum = (EditText)findViewById(R.id.departure_edit_ticketnum);
+            TextView airline = (TextView)findViewById(R.id.departure_airport_textview);
 
             DepartureSelect info = new DepartureSelect();
             info.s_date = date.getText().toString();
+            if(!info.s_date.equals("")){
+                info.s_date=date.getText().toString().substring(0,10);
+            }
+            Log.i("s_date",info.s_date);
             info.s_city = city.getText().toString();
+            info.s_ticketnum = ticketnum.getText().toString();
+            info.s_airline = airline.getText().toString();
+
+
+            intent.putExtra("departure_airport_code",airportCodeModel.getFlightId());
             intent.putExtra("departure", info);
             intent.putExtra("requestCode", 0);
             startActivity(intent);
@@ -238,8 +258,9 @@ public class SearchAirInfoActivity extends AppCompatActivity {
             departure_btn.setImageResource(R.drawable.search_fill);
 
             departure_city=1;
-            String tv = (String)parent.getAdapter().getItem(position);
-            ((TextView)findViewById(R.id.departure_city_textview)).setText(tv);
+            String tv = ((AirportCodeModel)(parent.getAdapter().getItem(position))).getAirport();
+                    ((TextView) findViewById(R.id.departure_city_textview)).setText(tv);
+            airportCodeModel = ((AirportCodeModel)(parent.getAdapter().getItem(position)));
             cCustomDialog.dismiss();
 
         }
@@ -293,6 +314,8 @@ public class SearchAirInfoActivity extends AppCompatActivity {
 class DepartureSelect implements Serializable {
     String s_date;
     String s_city;
+    String s_ticketnum;
+    String s_airline;
 }
 
 class ArrivalSelect implements Serializable {

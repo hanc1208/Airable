@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDDDDD"
+    android:background="@drawable/main_background"
     android:orientation="vertical"
     android:id="@+id/my_air_info_layout">
 
@@ -21,6 +21,7 @@
             android:background="#00000000"
             android:clickable="true"
             android:onClick="FlightClick" />
+
     </RelativeLayout>
 
     <FrameLayout
@@ -106,7 +107,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/my_air_info_departure_airport"
                                 android:text="@string/my_air_info_departure_airport"
-                                android:textSize="50sp"
+                                android:textSize="40sp"
                                 android:textColor="#40C4ff" />
                         </LinearLayout>
 
@@ -138,7 +139,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/my_air_info_arrival_airport"
                                 android:text="@string/my_air_info_arrival_airport"
-                                android:textSize="50sp"
+                                android:textSize="40sp"
                                 android:textColor="#40C4ff" />
                         </LinearLayout>
                     </LinearLayout>
@@ -470,8 +471,9 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="New Text"
-                                            android:id="@+id/textView2" />
+                                            android:text="예정변경"
+                                            android:id="@+id/textView2"
+                                            android:textSize="10sp" />
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -484,8 +486,9 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="New Text"
-                                            android:id="@+id/textView3" />
+                                            android:text="항공편 상태"
+                                            android:id="@+id/textView3"
+                                            android:textSize="10sp" />
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -498,8 +501,9 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="New Text"
-                                            android:id="@+id/textView4" />
+                                            android:text="도착지"
+                                            android:id="@+id/textView4"
+                                            android:textSize="10sp" />
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -512,8 +516,9 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="New Text"
-                                            android:id="@+id/textView5" />
+                                            android:text="카운터 탑승구"
+                                            android:id="@+id/textView5"
+                                            android:textSize="10sp" />
                                     </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
