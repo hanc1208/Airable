@@ -76,6 +76,9 @@ public class ShopDetailActivity extends AppCompatActivity {
             shopTime.setText(extras.getString("shopTime"));
             shopInfo.setText(extras.getString("shopInfo"));
             toolbar.setTitle(extras.getString("shopTitle"));
+            toolbar.setNavigationIcon(R.drawable.back_key);
+            toolbar.setTitleTextColor(0xff40C4FF);
+            toolbar.setBackgroundColor(0xffffff);
             mark = extras.getInt("shopMark");
 
             if (mark == 0)

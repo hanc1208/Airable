@@ -79,7 +79,7 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
         permanentShopList = dbManager.getShopList();
 
         bundle = getIntent().getExtras();
-        if(bundle.getString("searchkeyword")!=null) {
+        if(bundle != null && bundle.getString("searchkeyword")!=null) {
             searchKeyword = bundle.getString("searchkeyword");
             curFloor = bundle.getInt("curFloor");
         }else{

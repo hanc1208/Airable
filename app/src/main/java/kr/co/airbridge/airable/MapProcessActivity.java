@@ -1,5 +1,6 @@
 package kr.co.airbridge.airable;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -125,13 +126,12 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         pager.setAdapter(new adapter(getSupportFragmentManager()));
         pager.addOnPageChangeListener(new PageListener());
 
-        // Search button 비활성화
-        searchButton.setVisibility(View.INVISIBLE);
     }
 
     @OnClick(R.id.map_slide_search_button)
     public void onMapProcessSearchClick(){
-        //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), SearchShopsActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.map_slide_current_point_button)
