@@ -2,6 +2,7 @@ package kr.co.airbridge.airable;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -71,7 +72,6 @@ public class AirInfoListActivity extends AppCompatActivity {
         m_List.add(Item8);
         m_List.add(Item9);
         m_List.add(Item10);
-
 
 
 

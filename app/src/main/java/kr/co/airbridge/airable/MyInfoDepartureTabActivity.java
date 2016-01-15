@@ -31,16 +31,18 @@ public class MyInfoDepartureTabActivity extends Activity{
         m_ListView.setAdapter(m_Adapter);
 
 
-        DepartureFlight Item1 = new DepartureFlight("dd","ff","sasdfs","ff","daad","sss","ffgfg");
-        DepartureFlight Item2 = new DepartureFlight("ddd","ff","ss","ff","dffd","sss","ffgfg");
-        DepartureFlight Item3 = new DepartureFlight("ddf","ff","ss","fffdasfd","dsasd","sss","ffgfg");
-        DepartureFlight Item4 = new DepartureFlight("ddg","ff","ss","ff","dd","sss","ffgfg");
-        DepartureFlight Item5 = new DepartureFlight("ddds","ff","ss","fdfaf","fdsdd","sss","ffgfg");
-        DepartureFlight Item6 = new DepartureFlight("addd","ff","ss","ff","dd","sss","ffgfg");
-        DepartureFlight Item7 = new DepartureFlight("fdsddd","ff","ss","fdsasdff","dfdsfd","sss","ffgfg");
-        DepartureFlight Item8 = new DepartureFlight("asdfddf","ff","ss","ff","dd","sss","ffgfg");
-        DepartureFlight Item9 = new DepartureFlight("fdsddg","ff","ss","fffds","dddd","sss","ffgfg");
-        DepartureFlight Item10 = new DepartureFlight("adfddddds","ff","ss","ff","dssd","sss","ffgfg");
+
+        DepartureFlight Item1 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item2 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item3 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item4 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item5 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item6 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item7 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item8 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item9 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        DepartureFlight Item10 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+
 
         m_List.add(Item1);
         m_List.add(Item2);

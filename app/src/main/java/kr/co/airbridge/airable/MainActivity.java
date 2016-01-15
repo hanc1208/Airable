@@ -261,15 +261,14 @@ public class MainActivity extends AppCompatActivity {
             holder.contentsLinear.setBackgroundResource(R.drawable.card_blue_bg2);
             holder.cardLine.setBackgroundColor(Color.parseColor("#263238"));
             holder.cardContent.setTextColor(Color.parseColor("#263238"));
-//            holder.cardContent.setOnClickListener(new View.OnClickListener(){
-//                @Override
-//                public void onClick(View v) {
-//                    Intent detailinfointent = new Intent(getApplicationContext(), ProcessInfoWebViewActivity.class);
-//                    detailinfointent.putExtra("processNum", item.getProcessNum());
-//                    startActivity(detailinfointent);
-//                }
-//            });
-
+            holder.cardContent.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent detailinfointent = new Intent(getApplicationContext(), ProcessInfoWebViewActivity.class);
+                    detailinfointent.putExtra("processNum", item.getProcessNum());
+                    startActivity(detailinfointent);
+                }
+            });
             holder.cardPlace.setTextColor(Color.parseColor("#263238"));
             holder.cardSpotIcon.setVisibility(View.VISIBLE);
             holder.cardMapButton.setVisibility(View.VISIBLE);

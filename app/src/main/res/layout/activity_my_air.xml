@@ -470,8 +470,9 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="New Text"
-                                            android:id="@+id/textView2" />
+                                            android:text="예정변경"
+                                            android:id="@+id/textView2"
+                                            android:textSize="10sp" />
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -484,8 +485,9 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="New Text"
-                                            android:id="@+id/textView3" />
+                                            android:text="항공편 상태"
+                                            android:id="@+id/textView3"
+                                            android:textSize="10sp" />
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -498,8 +500,9 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="New Text"
-                                            android:id="@+id/textView4" />
+                                            android:text="도착지"
+                                            android:id="@+id/textView4"
+                                            android:textSize="10sp" />
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -512,8 +515,9 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="New Text"
-                                            android:id="@+id/textView5" />
+                                            android:text="카운터 탑승구"
+                                            android:id="@+id/textView5"
+                                            android:textSize="10sp" />
                                     </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>

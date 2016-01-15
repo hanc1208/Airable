@@ -76,14 +76,7 @@ public class AirInfoListAdapter extends BaseAdapter  {
             city    = (TextView) convertView.findViewById(R.id.air_info_list_city);
             btn     = (ImageView) convertView.findViewById(R.id.air_info_list_button);
 
-            //TextView time_change = (TextView)convertView.findViewById(R.id.air_info_list_time_change);
 
-            if("".equals(timechange.getText().toString())){
-                View viewStroke = (View)convertView.findViewById(R.id.air_info_list_stroke);
-                viewStroke.setBackgroundColor(Color.parseColor("#00000000"));
-                viewStroke.setVisibility(View.INVISIBLE);
-                Log.d("stroke", "sss");
-            }
 
 
 
@@ -107,12 +100,20 @@ public class AirInfoListAdapter extends BaseAdapter  {
             btn     = holder.list_button;
         }
 
+
         // Text 등록
         time.setText(m_List.get(position).getScheduleDataTime());
         timechange.setText(m_List.get(position).getEstimatedDataTime());
         city.setText(m_List.get(position).getAirport());
         ticketnum.setText(m_List.get(position).getFlightId());
         airport.setText(m_List.get(position).getAirline());
+
+
+        if(timechange.getText().toString().equals("")){
+            View viewStroke = convertView.findViewById(R.id.air_info_list_stroke);
+            viewStroke.setBackgroundColor(Color.parseColor("#00000000"));
+            viewStroke.setVisibility(View.INVISIBLE);
+        }
 
         /*
         // 버튼 이벤트 등록

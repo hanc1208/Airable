@@ -1,6 +1,7 @@
 package kr.co.airbridge.airable;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,8 @@ public class MyAirInfoDepartureListAdapter extends BaseAdapter{
             mremark=holder.mlist_remark;
         }
 
+
+
         // Text 등록
         mtime.setText(m_List.get(position).getScheduleDataTime());
         mtimechange.setText(m_List.get(position).getEstimatedDataTime());
@@ -97,6 +100,12 @@ public class MyAirInfoDepartureListAdapter extends BaseAdapter{
         mcheck.setText(m_List.get(position).getChkinrange());
         mgate.setText(m_List.get(position).getGatenumber());
         mremark.setText(m_List.get(position).getRemark());
+
+        if(mtimechange.getText().toString().equals("")){
+            View viewStroke = convertView.findViewById(R.id.my_air_info_list_stroke);
+            viewStroke.setBackgroundColor(Color.parseColor("#00000000"));
+            viewStroke.setVisibility(View.INVISIBLE);
+        }
 
         /*
         // 버튼 이벤트 등록
