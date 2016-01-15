@@ -19,6 +19,9 @@ import android.widget.TextView;
 import java.io.Serializable;
 
 import kr.co.airbridge.airable.utility.ActivityUtility;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class SearchAirInfoActivity extends AppCompatActivity {
 
@@ -37,9 +40,12 @@ public class SearchAirInfoActivity extends AppCompatActivity {
     private ArrivalCityDialog cACustomDialog;
     private ArrivalAirportDialog aACustomDialog;
 
+    AirportCodeModel airportCodeModel = null;
 
     int departure_city=0;
     int arrival_city=0;
+
+    RetrofitServer retrofitServer = new RetrofitServer(1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +89,8 @@ public class SearchAirInfoActivity extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
+
+
 
 
     }
@@ -156,6 +164,7 @@ public class SearchAirInfoActivity extends AppCompatActivity {
             DepartureSelect info = new DepartureSelect();
             info.s_date = date.getText().toString();
             info.s_city = city.getText().toString();
+            intent.putExtra("departure_airport_code",airportCodeModel.getFlightId());
             intent.putExtra("departure", info);
             intent.putExtra("requestCode", 0);
             startActivity(intent);
@@ -238,8 +247,9 @@ public class SearchAirInfoActivity extends AppCompatActivity {
             departure_btn.setImageResource(R.drawable.search_fill);
 
             departure_city=1;
-            String tv = (String)parent.getAdapter().getItem(position);
-            ((TextView)findViewById(R.id.departure_city_textview)).setText(tv);
+            String tv = ((AirportCodeModel)(parent.getAdapter().getItem(position))).getAirport();
+                    ((TextView) findViewById(R.id.departure_city_textview)).setText(tv);
+            airportCodeModel = ((AirportCodeModel)(parent.getAdapter().getItem(position)));
             cCustomDialog.dismiss();
 
         }

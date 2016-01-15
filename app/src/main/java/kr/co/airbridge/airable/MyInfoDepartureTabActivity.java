@@ -11,7 +11,7 @@ public class MyInfoDepartureTabActivity extends Activity{
 
     private ListView m_ListView;
     private MyAirInfoDepartureListAdapter  m_Adapter;
-    private ArrayList<DepartureFlight> m_List;
+    private ArrayList<MyAirListDepartureFlight> m_List;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -32,16 +32,16 @@ public class MyInfoDepartureTabActivity extends Activity{
 
 
 
-        DepartureFlight Item1 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item2 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item3 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item4 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item5 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item6 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item7 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item8 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item9 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
-        DepartureFlight Item10 = new DepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item1 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item2 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item3 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item4 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item5 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item6 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item7 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item8 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item9 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
+        MyAirListDepartureFlight Item10 = new MyAirListDepartureFlight("00:10","","싱가포르","SQ603","마감예정","L01-M12","34");
 
 
         m_List.add(Item1);

@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class MyAirInfoDepartureListAdapter extends BaseAdapter{
 
     // 문자열을 보관 할 ArrayList
-    private ArrayList<DepartureFlight> m_List;
+    private ArrayList<MyAirListDepartureFlight> m_List;
 
     // 생성자
-    public MyAirInfoDepartureListAdapter(ArrayList<DepartureFlight> m_List) {
+    public MyAirInfoDepartureListAdapter(ArrayList<MyAirListDepartureFlight> m_List) {
         this.m_List=m_List;
     }
 

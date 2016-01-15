@@ -111,6 +111,7 @@
         <activity android:name=".ProcessInfoWebViewActivity">
 
         </activity>
+        <activity android:name=".ApiTestActivity"></activity>
     </application>
 
 

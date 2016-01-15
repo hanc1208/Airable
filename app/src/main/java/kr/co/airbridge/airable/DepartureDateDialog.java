@@ -4,12 +4,18 @@ package kr.co.airbridge.airable;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,6 +53,41 @@ public class DepartureDateDialog extends Dialog{
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), R.layout.tab_list_textview);
 
+        /*
+        long now = System.currentTimeMillis();
+        Date departure_date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy.MM.dd");
+        String strNow = sdfNow.format(departure_date);
+
+        Calendar calendar = Calendar.getInstance();
+
+        Integer dayNow = calendar.getTime().getDate();
+
+
+
+        Date date = calendar.getTime();
+        String week = new SimpleDateFormat("EE", Locale.KOREAN).format(date.getTime());
+
+        Log.i("date",week);
+
+
+        Log.i("strNow",strNow);
+
+        Log.i("dayNow",dayNow.toString());
+
+
+        */
+
+
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_WEEK,new Date().getDate() );
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd EE",Locale.KOREAN);
+
+        for(int i=0;i<7;i++){
+            Log.i("dateTag",simpleDateFormat.format(calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_WEEK,1);
+        }
 
         // 아이템을 추가
         adapter.add("item1");

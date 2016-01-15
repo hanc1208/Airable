@@ -1,13 +1,8 @@
 package kr.co.airbridge.airable;
 
 
-import android.app.Activity;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +18,12 @@ public class AirInfoListAdapter extends BaseAdapter  {
 
 
     // 문자열을 보관 할 ArrayList
-    private ArrayList<DepartingFlight>   m_List;
+    private ArrayList<AirListDepartingFlight>   m_List;
 
     // 생성자
-    public AirInfoListAdapter(ArrayList<DepartingFlight> m_List) {
+    public AirInfoListAdapter(ArrayList<AirListDepartingFlight> m_List) {
         this.m_List=m_List;
-       // m_List = new ArrayList<DepartingFlight>();
+       // m_List = new ArrayList<AirListDepartingFlight>();
     }
 
     // 현재 아이템의 수를 리턴
@@ -109,10 +104,11 @@ public class AirInfoListAdapter extends BaseAdapter  {
         airport.setText(m_List.get(position).getAirline());
 
 
-        if(timechange.getText().toString().equals("")){
+        if(time.getText().toString().equals(timechange.getText().toString())){
             View viewStroke = convertView.findViewById(R.id.air_info_list_stroke);
             viewStroke.setBackgroundColor(Color.parseColor("#00000000"));
             viewStroke.setVisibility(View.INVISIBLE);
+            timechange.setVisibility(View.INVISIBLE);
         }
 
         /*
