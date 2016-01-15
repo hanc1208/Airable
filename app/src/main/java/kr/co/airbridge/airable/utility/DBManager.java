@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+
+import kr.co.airbridge.airable.Shop;
 import kr.co.airbridge.airable.model.Process;
 
 /**
@@ -77,4 +79,66 @@ public class DBManager {
     }
 
 
+    public ArrayList<Shop> getShopList() {
+        String query = "SELECT * FROM shop";
+
+        ArrayList<Shop> shopList = new ArrayList<Shop>();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        while (cursor.moveToNext()) {
+            int no = cursor.getInt(0);
+            String title = cursor.getString(1);
+            String info = cursor.getString(2);
+            String location = cursor.getString(3);
+            int floor = cursor.getInt(4);
+            String time = cursor.getString(5);
+            String tel = cursor.getString(6);
+            int image = cursor.getInt(7);
+            int mark = cursor.getInt(8);
+            int vertexid = cursor.getInt(9);
+
+            Shop tempShop = new Shop (no, title, info, location, floor, time, tel, image, mark, vertexid);
+            shopList.add(tempShop);
+        }
+
+        cursor.close();
+        db.close();
+        return shopList;
+    }
+
+    public Shop getShop(int src_no) {
+        String query = "SELECT FROM shop WHERE no=" + src_no;
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToNext();
+
+        int no = cursor.getInt(0);
+        String title = cursor.getString(1);
+        String info = cursor.getString(2);
+        String location = cursor.getString(3);
+        int floor = cursor.getInt(4);
+        String time = cursor.getString(5);
+        String tel = cursor.getString(6);
+        int image = cursor.getInt(7);
+        int mark = cursor.getInt(8);
+        int vertexid = cursor.getInt(9);
+
+        cursor.close();
+        db.close();
+        Shop tempShop = new Shop (no, title, info, location, floor, time, tel, image, mark, vertexid);
+
+        return tempShop;
+    }
+
+    public void updateShopMark(int upt_no, int upt_mark) {
+        String query = "UPDATE shop SET mark=" + upt_mark + " WHERE no=" + upt_no;
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL(query);
+
+        db.close();
+    }
 }

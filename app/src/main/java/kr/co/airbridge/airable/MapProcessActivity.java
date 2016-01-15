@@ -1,5 +1,6 @@
 package kr.co.airbridge.airable;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -13,6 +14,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,12 +48,15 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
     TextView toolbarTextview;
     @Bind(R.id.map_slide_map)
     MapView mapView;
+    @Bind(R.id.map_slide_search_button)
+    ImageButton searchButton;
 
     Fragment curFragment = new Fragment();
     int pageCount;
     int curPageNum = 0;
     ArrayList<Process> processList;
     DBManager dbManager;
+    int firstPageNum = 0;
 
     CurrentPositionReceiver currentPositionReceiver;
 
@@ -81,9 +86,18 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         processList = new ArrayList<Process>();
         ArrayList<Process> tempArr = dbManager.getProcessList();
 
+        int firstPageNo = -1;
+        Intent intentTemp = getIntent();
+        firstPageNo = intentTemp.getIntExtra("processNum", -1);
+
+        int a = 0;
         for(Process tempPrc : tempArr){
-            if(tempPrc.getState() != -1)
+            if(tempPrc.getState() != -1){
                 processList.add(tempPrc);
+                if(firstPageNo != -1 && firstPageNo == tempPrc.getNo())
+                    firstPageNum = a;
+                a++;
+            }
         }
 
         pageCount = processList.size();
@@ -121,11 +135,15 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         // View pager 세팅
         pager.setAdapter(new adapter(getSupportFragmentManager()));
         pager.addOnPageChangeListener(new PageListener());
+
+
+        pager.setCurrentItem(curPageNum);
     }
 
     @OnClick(R.id.map_slide_search_button)
     public void onMapProcessSearchClick(){
-        //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), SearchShopsActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.map_slide_current_point_button)

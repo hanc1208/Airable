@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="24dp">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/floor_select_close_button"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/close_1"
+            android:background="#00000000" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/floor_select_curpoint_button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="#00000000"
+            android:src="@drawable/position_1" />
+
+        <ImageButton
+            android:onClick="onFloorSelectClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/floor_select_all_button"
+            android:layout_alignBottom="@+id/floor_select_curpoint_button"
+            android:layout_toLeftOf="@+id/floor_select_curpoint_button"
+            android:layout_toStartOf="@+id/floor_select_curpoint_button"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/all"
+            android:background="#00000000" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="354dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp">
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_b1f"
+            android:id="@+id/floor_select_left_b1f"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_1f"
+            android:id="@+id/floor_select_left_1f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_left_b1f"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_2f"
+            android:id="@+id/floor_select_left_2f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_left_1f"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_3f"
+            android:id="@+id/floor_select_left_3f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_left_2f"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_4f"
+            android:id="@+id/floor_select_left_4f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_left_3f"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_b1f"
+            android:id="@+id/floor_select_mid_b1f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_1f"
+            android:id="@+id/floor_select_mid_1f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_mid_b1f"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_2f"
+            android:id="@+id/floor_select_mid_2f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_mid_1f"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_3f"
+            android:id="@+id/floor_select_mid_3f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_mid_2f"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_4f"
+            android:id="@+id/floor_select_mid_4f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_mid_3f"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_b1f"
+            android:id="@+id/floor_select_right_b1f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_1f"
+            android:id="@+id/floor_select_right_1f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_right_b1f"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:onClick="onFloorSelectClick"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_2f"
+            android:id="@+id/floor_select_right_2f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_right_1f"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:onClick="onFloorSelectClick"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_3f"
+            android:id="@+id/floor_select_right_3f"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_mid_2f"
+            android:layout_alignRight="@+id/floor_select_right_2f"
+            android:layout_alignEnd="@+id/floor_select_right_2f"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:onClick="onFloorSelectClick"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:text="@string/floor_select_sgenf"
+            android:id="@+id/floor_select_sgen"
+            android:background="@drawable/b1f_outline"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_above="@+id/floor_select_mid_3f"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/floor_select_trafficcenter"
+            android:id="@+id/floor_select_trafficcenter_textview"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="3dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/floor_select_terminal"
+            android:id="@+id/floor_select_terminal_textview"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/floor_select_boardingzone"
+            android:id="@+id/floor_select_boardingzone_textview"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/floor_select_image"
+            android:layout_alignEnd="@+id/floor_select_image"
+            android:layout_marginRight="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/floor_select_image"
+            android:src="@drawable/image"
+            android:layout_below="@+id/floor_select_terminal_textview"
+            android:layout_marginTop="24dp" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -37,6 +37,23 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO process VALUES(18, '탑승구 이동', 20, '여객터미널 지하1층 셔틀트레인 탑승구', '티켓을 확인하신 후 (탑승구 101~132번) 셔틀트레인을 타고 탑승동으로 이동하시기 바랍니다', -1, 18)");
         db.execSQL("INSERT INTO process VALUES(19, '탑승', 0, '[ 여객터미널 / 탑승동 ] 0번 탑승구', '항공기 출발 30분 전에 탑승을 시작하여 10분 전에 탑승이 마감되오니 늦지 않도록 주의하시기 바랍니다', 0, 19)");
 
+        db.execSQL("CREATE TABLE shop (no INTEGER PRIMARY KEY, title VARCHAR(30), info VARCHAR(200), location VARCHAR(50), floor INTEGER, time VARCHAR(20), tel VARCHAR(20), image INTEGER, mark INTEGER, vertexid INTEGER)");
+
+        db.execSQL("INSERT INTO shop VALUES(1, '타코벨', '타코벨, 음료 등', '(탑승동) 115번 Gate 부근', 33, '06 : 00 ~ 22 : 00', '032-743-6259', 1, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(2, '버거킹', '햄버거류, 음료 등', '교통센터 지하1층 서측', 11, '07 : 00 ~ 22 : 00', '032-743-0322', 2, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(3, '롯데리아', '햄버거류, 음료, 커피, 아이스크림 등', '체크인카운터 D부근', 23, '00 : 00 ~ 00 : 00', '032-743-5680', 2, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(4, '케이 스트리트 푸드', '분식, 라면, 김밥, 떡볶이, 튀김, 순대, 어묵, 커피, 에이드', '(일반지역)여객터미널 4층 동편(D카운터 앞)', 24, '06 : 00 ~ 22 : 00', '032-743-6970', 3, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(5, '오성쉐이크', '쉐이크, 수제 햄버거, 커피, 음료', '(일반지역)여객터미널 4층 동편(D카운터 앞)', 24, '06 : 00 ~ 22 : 00', '032-743-3454', 2, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(6, '모스버거', '햄버거, 패스트푸드, 커피, 차, 음료', '(면세구역) 43번 Gate 부근', 23, '06 : 00 ~ 22 : 00', '032-743-5837', 2, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(7, '스킨푸드', '화장품', '(여객터미널) 1층 9번 출입문 부근', 11, '06 : 30 ~ 21 : 00', '032-743-4196', 4, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(8, '[롯데면세점]화장품·향수', '화장품', '(면세구역)탑승동 중앙 G117 부근', 33, '00 : 00 ~ 00 : 00', '032-743-7870', 4, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(9, '에뛰드하우스', '화장품', '교통센터 서편', 10, '07 : 00 ~ 21 : 00', '032-743-4791', 4, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(10, 'Travel Air', '가방, 샌들 등의 여행용품, 벨트, 지갑, 핸드백등의 피혁제품', '(여객터미널) 지하 1층 서편', 20, '09 : 00 ~ 20 : 00', '032-743-8483', 5, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(11, '샘소나이트', '여행용 가방, 여행용품', '(여객터미널) 3층 체크인카운터 G 부근', 23, '06 : 30 ~ 21 : 00', '032-743-2366', 5, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(12, '샌디캐스트', '반려동물 조각품', '교통센터 중앙', 10, '07 : 00 ~ 21 : 00', '032-743-7032', 5, 0, -1)");
+        db.execSQL("INSERT INTO shop VALUES(13, '에스젠1', '지상 최대의 소프트웨어 멤버-쉽', '향군타워', 40, '00 : 00 ~ 24 : 00', '010-3382-9303', 0, 0, 36)");
+        db.execSQL("INSERT INTO shop VALUES(14, '에스젠2', '지상 최대의 소프트웨어 멤버-쉽', '향군타워', 40, '00 : 00 ~ 24 : 00', '010-3382-9304', 0, 0, 37)");
+
     }
 
     @Override
