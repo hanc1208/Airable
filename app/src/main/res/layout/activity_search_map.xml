@@ -105,7 +105,8 @@
                     android:layout_marginLeft="14dp"
                     android:layout_marginTop="14dp"
                     android:background="@drawable/map_btn_bg"
-                    android:text="3층" />
+                    android:text="3층"
+                    android:textColor="#607d8b" />
             </RelativeLayout>
 
             <View

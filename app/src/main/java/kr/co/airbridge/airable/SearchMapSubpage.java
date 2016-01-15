@@ -1,5 +1,7 @@
 package kr.co.airbridge.airable;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,8 +33,16 @@ public class SearchMapSubpage extends Fragment {
         titleTextview.setText(bundle.getString("title"));
         timeTextview.setText(bundle.getString("detail"));
         locationTextview.setText(bundle.getString("location"));
-        // Call button listener
-        // Mark button listener
+        final String tel = bundle.getString("tel");
+
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + tel)); // Test
+                startActivity(intent);
+            }
+        });
+        markButton.setVisibility(View.INVISIBLE);
 
         return linearLayout;
     }
