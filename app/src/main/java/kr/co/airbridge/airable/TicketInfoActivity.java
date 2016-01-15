@@ -2,6 +2,7 @@ package kr.co.airbridge.airable;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -25,6 +26,10 @@ public class TicketInfoActivity extends AppCompatActivity {
     String departure_min ="";
     String flightId="";
 
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_info_form);
@@ -44,6 +49,11 @@ public class TicketInfoActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         Intent intent = getIntent();
+
+
+        pref = getSharedPreferences("airable", MODE_PRIVATE);
+        editor = pref.edit();
+
 
 
         TextView ticket_num = (TextView)findViewById(R.id.ticket_info_ticket_number);
@@ -84,6 +94,15 @@ public class TicketInfoActivity extends AppCompatActivity {
         TextView departure_gate = (TextView)findViewById(R.id.ticket_info_gate2);
         departure_gate.setText(intent.getStringExtra("departure_gate"));
 
+
+        editor.putString("date","20"+year+"."+month+"."+date+" "+departure_hour+":"+departure_min);
+        editor.putString("flight_name",intent.getStringExtra("ticket_number"));
+        editor.putString("checkin", intent.getStringExtra("departure_check"));
+        editor.putString("airline",intent.getStringExtra("arrival_city_ko"));
+        editor.putString("gate", intent.getStringExtra("departure_gate"));
+        editor.putString("airport", intent.getStringExtra("departure_airline_name"));
+        editor.putString("airport_code", intent.getStringExtra("arrival_city"));
+        editor.apply();
 
 
     }

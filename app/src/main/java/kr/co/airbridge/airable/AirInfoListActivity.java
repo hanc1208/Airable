@@ -147,6 +147,7 @@ public class AirInfoListActivity extends AppCompatActivity {
 
 
                         AirListDepartingFlight tempItem = new AirListDepartingFlight(hour+" : "+min,c_hour+" : "+c_min,df.getAirport(),df.getFlightId(),df.getAirline(),df.getChkinrange(),df.getGatenumber(),df.getAirportCode(),df.getScheduleDataTime());
+                        /*
                         editor.putString("date","20"+year+"."+month+"."+date+" "+hour+":"+min);
                         editor.putString("flight_name",df.getFlightId());
                         editor.putString("checkin",df.getChkinrange());
@@ -155,7 +156,7 @@ public class AirInfoListActivity extends AppCompatActivity {
                         editor.putString("airport", df.getAirport());
                         editor.putString("airport_code", df.getAirportCode());
                         editor.apply();
-
+*/
                         boolean checkDate = !d.s_date.equals("");
                         boolean checkFlightId = !d.s_ticketnum.equals("");
                         boolean checkAirline = !d.s_airline.equals("");
@@ -196,6 +197,7 @@ public class AirInfoListActivity extends AppCompatActivity {
                 intent.putExtra("departure_date", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getRawdate());
                 intent.putExtra("departure_check", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getChkinrange());
                 intent.putExtra("departure_gate", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getGatenumber());
+                intent.putExtra("departure_airline_name", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getAirport());
 
 
                 startActivity(intent);
