@@ -51,7 +51,7 @@
             android:layout_weight="1"
             android:layout_alignParentRight="true">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/departure_tab_date_search"
@@ -159,7 +159,7 @@
             android:layout_weight="1"
             android:layout_alignParentRight="true">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/departure_tab_city_search"
@@ -221,7 +221,7 @@
             android:layout_weight="1"
             android:layout_alignParentRight="true">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/departure_tab_airport_search"
@@ -244,9 +244,10 @@
         android:layout_height="match_parent"
         android:gravity="bottom|center">
 
-        <ImageButton
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:id="@+id/departure_search_btn"
             android:src="@drawable/search_gray"
             android:background="#00000000"

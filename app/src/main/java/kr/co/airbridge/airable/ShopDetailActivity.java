@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,9 +31,9 @@ public class ShopDetailActivity extends AppCompatActivity {
     @Bind(R.id.shop_detail_image)
     ImageView shopImage;
     @Bind(R.id.mark_button)
-    ImageButton markBtn;
+    ImageView markBtn;
     @Bind(R.id.call_button)
-    ImageButton callBtn;
+    ImageView callBtn;
     @Bind(R.id.shop_detail_toolbar)
     Toolbar toolbar;
 
@@ -90,17 +90,17 @@ public class ShopDetailActivity extends AppCompatActivity {
         }
 
 
-        // ImageButton 클릭 시 이미지가 바뀌는 효과를 적용한다.
+        // ImageView 클릭 시 이미지가 바뀌는 효과를 적용한다.
         markBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    ((ImageButton) v).setImageResource(R.drawable.mark_2);
+                    ((ImageView) v).setImageResource(R.drawable.mark_2);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (mark == 0)
-                        ((ImageButton) v).setImageResource(R.drawable.mark_1);
+                        ((ImageView) v).setImageResource(R.drawable.mark_1);
                     else
-                        ((ImageButton) v).setImageResource(R.drawable.mark_2);
+                        ((ImageView) v).setImageResource(R.drawable.mark_2);
                     onMarkClicked(); // == onClickEvent
                 }
                 return true;
@@ -111,9 +111,9 @@ public class ShopDetailActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    ((ImageButton) v).setImageResource(R.drawable.call_2);
+                    ((ImageView) v).setImageResource(R.drawable.call_2);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    ((ImageButton) v).setImageResource(R.drawable.call_1);
+                    ((ImageView) v).setImageResource(R.drawable.call_1);
                     onCallClicked(); // == onClickEvent
                 }
                 return true;

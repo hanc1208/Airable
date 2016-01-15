@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -151,7 +151,7 @@ public class SearchAirInfoActivity extends AppCompatActivity {
     public void OnDepartureSearchClick() {
 
 
-        ImageButton departure_btn = (ImageButton)findViewById(R.id.departure_search_btn);
+        ImageView departure_btn = (ImageView)findViewById(R.id.departure_search_btn);
 
         if(departure_btn.isClickable()){
 
@@ -187,7 +187,7 @@ public class SearchAirInfoActivity extends AppCompatActivity {
 
     public void OnArrivalSearchClick() {
 
-        ImageButton arrival_btn = (ImageButton)findViewById(R.id.arrival_search_btn);
+        ImageView arrival_btn = (ImageView)findViewById(R.id.arrival_search_btn);
 
         if(arrival_btn.isClickable()) {
             Intent intent = new Intent(getApplicationContext(),
@@ -252,7 +252,7 @@ public class SearchAirInfoActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener itemClickListener2 = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ImageButton departure_btn = (ImageButton)findViewById(R.id.departure_search_btn);
+            ImageView departure_btn = (ImageView)findViewById(R.id.departure_search_btn);
             departure_btn.setEnabled(true);
             departure_btn.setClickable(true);
             departure_btn.setImageResource(R.drawable.search_fill);
@@ -286,7 +286,7 @@ public class SearchAirInfoActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener AitemClickListener2 = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ImageButton arrival_btn = (ImageButton) findViewById(R.id.arrival_search_btn);
+            ImageView arrival_btn = (ImageView) findViewById(R.id.arrival_search_btn);
             arrival_btn.setEnabled(true);
             arrival_btn.setClickable(true);
             arrival_btn.setImageResource(R.drawable.search_fill);

@@ -8,7 +8,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class ProcessInfoWebViewActivity extends Activity {
 
@@ -98,9 +98,9 @@ public class ProcessInfoWebViewActivity extends Activity {
         }
 
 
-        ImageButton imageButton = (ImageButton)findViewById(R.id.webview_close);
+        ImageView ImageView = (ImageView)findViewById(R.id.webview_close);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

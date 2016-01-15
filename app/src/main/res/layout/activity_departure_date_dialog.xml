@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dip"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp">
@@ -20,6 +20,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:id="@+id/imageView"
                 android:src="@drawable/map_t" />
         </LinearLayout>
@@ -41,9 +42,10 @@
                 android:layout_height="1dp"
                 android:background="#C2C2C2"/>
 
-            <ImageButton
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:id="@+id/custom_close"
                 android:src="@drawable/close" />
         </LinearLayout>

@@ -23,9 +23,7 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="75dp">
+                    android:layout_centerInParent="true">
 
                     <ImageView
                         android:id="@+id/search_map_search_image"
@@ -49,7 +47,7 @@
                         android:textSize="18sp" />
                 </RelativeLayout>
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/search_map_search_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,7 +80,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/search_map_map"/>
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/search_map_current_point_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

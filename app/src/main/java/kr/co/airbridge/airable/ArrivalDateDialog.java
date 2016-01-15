@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import butterknife.Bind;
@@ -19,7 +19,7 @@ public class ArrivalDateDialog extends Dialog{
     private AdapterView.OnItemClickListener itemClickListener;
 
     @Bind(R.id.custom_close)
-    ImageButton mLeftButton;
+    ImageView mLeftButton;
 
     @Bind(R.id.arrival_date_listview)
     ListView date_listview;

@@ -16,7 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.caverock.androidsvg.SVGParseException;
@@ -46,7 +46,7 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
     @Bind(R.id.search_map_viewpager)
     ViewPager pager;
     @Bind(R.id.search_map_search_button)
-    ImageButton searchButton;
+    ImageView searchButton;
     @Bind(R.id.search_map_map)
     MapView mapView;
 

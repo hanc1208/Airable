@@ -12,7 +12,7 @@
         android:layout_height="57dp"
         android:background="#00000000">
 
-        <ImageButton
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/my_air_flight_img"
@@ -37,7 +37,7 @@
             android:gravity="bottom"
             sothree:umanoFadeColor="@android:color/transparent"
             sothree:umanoOverlay="true"
-            sothree:umanoPanelHeight="224dp"
+            sothree:umanoPanelHeight="260dp"
             sothree:umanoShadowHeight="0dp">
 
             <LinearLayout
@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8.5dp">
 
-                        <ImageButton
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/myair_myplan_button"
@@ -68,7 +68,7 @@
                             android:src="@drawable/plan"
                             android:background="#00000000" />
 
-                        <ImageButton
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/myair_deadline_button"
@@ -416,10 +416,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content">
 
-                                    <ImageButton
+                                    <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/imageButton"
+                                        android:id="@+id/ImageView"
                                         android:src="@drawable/update2"
                                         android:background="#00000000"
                                         android:onClick="onclick"/>

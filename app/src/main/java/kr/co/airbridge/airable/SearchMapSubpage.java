@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,8 +26,8 @@ public class SearchMapSubpage extends Fragment {
         TextView titleTextview = (TextView) linearLayout.findViewById(R.id.search_map_curshop_title_textview);
         TextView timeTextview = (TextView) linearLayout.findViewById(R.id.search_map_curshop_time_textview);
         TextView locationTextview = (TextView) linearLayout.findViewById(R.id.search_map_curshop_location_textview);
-        ImageButton callButton = (ImageButton) linearLayout.findViewById(R.id.search_map_curshop_call);
-        ImageButton markButton = (ImageButton) linearLayout.findViewById(R.id.search_map_curshop_mark);
+        ImageView callButton = (ImageView) linearLayout.findViewById(R.id.search_map_curshop_call);
+        ImageView markButton = (ImageView) linearLayout.findViewById(R.id.search_map_curshop_mark);
 
         Bundle bundle = getArguments();
         titleTextview.setText(bundle.getString("title"));

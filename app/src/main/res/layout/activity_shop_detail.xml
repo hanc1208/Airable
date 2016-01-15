@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mark_button"
@@ -167,7 +167,7 @@
                 android:layout_centerHorizontal="true"
                 android:id="@+id/frameLayout"></FrameLayout>
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/call_button"

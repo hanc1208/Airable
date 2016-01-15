@@ -11,8 +11,9 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:id="@+id/ticket_info_bg_2"
             android:src="@drawable/bg_2" />
 
@@ -399,15 +400,16 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom">
 
-            <ImageButton
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ticket_info_start"
                 android:src="@drawable/start"
+                android:adjustViewBounds="true"
                 android:background="#00000000"
                 android:clickable="true"
                 android:nestedScrollingEnabled="false" />

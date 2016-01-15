@@ -19,9 +19,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="75dp">
+                android:layout_centerInParent="true">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -45,7 +43,7 @@
                     android:layout_centerVertical="true" />
             </RelativeLayout>
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/search_2"
@@ -70,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/map_slide_map"/>
-            <ImageButton
+            <ImageView
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:id="@+id/map_slide_current_point_button"

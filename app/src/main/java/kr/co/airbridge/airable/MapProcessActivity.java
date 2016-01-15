@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +50,9 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
     @Bind(R.id.map_slide_map)
     MapView mapView;
     @Bind(R.id.map_slide_search_button)
-    ImageButton searchButton;
+    ImageView searchButton;
+    @Bind(R.id.map_slide_current_point_button)
+    ImageView currentPointButton;
 
     Fragment curFragment = new Fragment();
     int pageCount;
@@ -137,7 +140,7 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         pager.addOnPageChangeListener(new PageListener());
 
 
-        pager.setCurrentItem(curPageNum);
+        pager.setCurrentItem(firstPageNum);
     }
 
     @OnClick(R.id.map_slide_search_button)
@@ -149,8 +152,10 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
     @OnClick(R.id.map_slide_current_point_button)
     public void onMapProcessCurrentPointClick(){
         if (currentPositionReceiver.isScanning()) {
+            currentPointButton.setColorFilter(null);
             currentPositionReceiver.stopScan();
         } else {
+            currentPointButton.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
             currentPositionReceiver.startScan();
         }
     }

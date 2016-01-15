@@ -43,7 +43,8 @@
     <GridView
         android:id="@+id/grid_add_options"
         android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginLeft="32.5dp"
         android:layout_marginRight="32.5dp"
         android:numColumns="3"
@@ -51,8 +52,9 @@
         android:horizontalSpacing="27dp" />
     <ImageView
         android:id="@+id/next_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:src="@drawable/next_1"
         android:gravity="bottom" />
 </LinearLayout>

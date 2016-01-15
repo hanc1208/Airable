@@ -42,7 +42,7 @@
                         android:imeOptions="actionSearch"
                         android:inputType="textNoSuggestions" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/searchshops_reset_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             android:layout_height="37dp"
             android:background="#ffffff">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/searchshops_map_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
