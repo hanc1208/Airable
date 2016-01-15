@@ -48,7 +48,7 @@ public class CurrentPositionReceiver implements WifiBroadcastReceiver.WifiBroadc
                 for (Wifi wifi : wifiList) {
                     if (wifi.ssid.equals(entry.getKey())) {
                         found = true;
-                        difference += (double) Math.abs(wifi.rssi - entry.getValue());
+                        difference += Math.pow(wifi.rssi - entry.getValue(), 2);
                     }
                 }
 
