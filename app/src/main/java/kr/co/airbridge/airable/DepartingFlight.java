@@ -1,8 +1,5 @@
 package kr.co.airbridge.airable;
 
-/**
- * Created by pso99_000 on 2015-12-12.
- */
 public class DepartingFlight {
     // 모든 변수명은 '인천국제공항공사 OpenAPI'의 변수명과 동일합니다.
     private String airline;               //항공사 - e.g.대한항공
@@ -13,6 +10,15 @@ public class DepartingFlight {
     private String chkinrange;           // 체크인 카운터 - e.g. H25-H36
     private String gatenumber;           // 탑승구 번호 - e.g. 122
     private String remark;                // 운항상태 (출발, 결항, 지연, 탑승중, 마감예정, 탑승마감, 탑승준비) - e.g. 출발
+
+    public DepartingFlight(String mTime,String mTimeChange,String mCity,String mAirNum,String mAirPort){
+        this.scheduleDataTime=mTime;
+        this.estimatedDataTime=mTimeChange;
+        this.airport=mCity;
+        this.flightId=mAirNum;
+        this.airline=mAirPort;
+    }
+    public DepartingFlight(){}
 
     public String getAirline() {
         return airline;
