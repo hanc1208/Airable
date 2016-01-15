@@ -1,6 +1,12 @@
 package kr.co.airbridge.airable;
 
 import android.app.FragmentManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -13,21 +19,32 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.caverock.androidsvg.SVGParseException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kr.co.airbridge.airable.map.CurrentPositionReceiver;
+import kr.co.airbridge.airable.map.Map;
+import kr.co.airbridge.airable.map.MapView;
+import kr.co.airbridge.airable.map.Path;
+import kr.co.airbridge.airable.model.*;
+import kr.co.airbridge.airable.model.Process;
 import kr.co.airbridge.airable.utility.ActivityUtility;
 import kr.co.airbridge.airable.utility.DBManager;
 
-public class SearchMapActivity extends AppCompatActivity implements FloorButtonListener{
+public class SearchMapActivity extends AppCompatActivity implements FloorButtonListener, CurrentPositionReceiver.CurrentPositionListener{
     @Bind(R.id.search_map_floor_button)
     Button searchMapFloor;
     @Bind(R.id.search_map_viewpager)
     ViewPager pager;
     @Bind(R.id.search_map_search_button)
     ImageButton searchButton;
+    @Bind(R.id.search_map_map)
+    MapView mapView;
 
     Bundle bundle;
     String searchKeyword;
@@ -40,6 +57,7 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
     DBManager dbManager;
     Fragment curFragment;
 
+    CurrentPositionReceiver currentPositionReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +84,17 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
         }
         setCurFloor(curFloor);
         Log.i("mytag", "Search Keyword : " + searchKeyword); // Intent getExtra test
+
+        // Map setting
+        Place place = Place.createTestPlace();
+        Map map = place.getFloors()[0].getMap();
+        try {
+            mapView.setMap(map);
+        } catch (SVGParseException | IOException e) {
+            e.printStackTrace();
+        }
+
+        currentPositionReceiver = new CurrentPositionReceiver(this, map, this);
 
         // Shop list
         updateShopList();
@@ -180,8 +209,13 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
 
     @OnClick(R.id.search_map_current_point_button)
     public void onSearchMapCurPointClick(){
-        Toast.makeText(getApplicationContext(), "Current Point", Toast.LENGTH_SHORT).show(); // Test
+        if (currentPositionReceiver.isScanning()) {
+            currentPositionReceiver.stopScan();
+        } else {
+            currentPositionReceiver.startScan();
+        }
     }
+
 
     @OnClick(R.id.search_map_search_button)
     public void onSearchMapSearchClick(){
@@ -221,5 +255,100 @@ public class SearchMapActivity extends AppCompatActivity implements FloorButtonL
             return POSITION_NONE;
         }
 
+    }
+
+
+    @Override
+    public void onReceive(Point currentPosition) {
+        mapView.setCurrentPosition(currentPosition);
+    }
+
+    public void putCurMarker(){
+    /*
+        final Paint pntWhite = new Paint();
+        pntWhite.setAntiAlias(true);
+        pntWhite.setColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        final Paint pntRed = new Paint();
+        pntRed.setAntiAlias(true);
+        pntRed.setColor(Color.RED);
+
+        Path path = mapView.getPath();
+
+        for(int i = 0; i < processList.size(); i++){
+            kr.co.airbridge.airable.model.Process prc = processList.get(i);
+            Drawable tempDraw = new MyDrawable(prc, i, pntWhite, false);
+            if(i == curPageNum){
+                Drawable drawRed = new MyDrawable(prc, i, pntRed, true);
+                path.putMarker(prc.getVertexid(), drawRed);
+            }else{
+                path.putMarker(prc.getVertexid(), tempDraw);
+            }
+        }//for*/
+
+        mapView.invalidate();
+    }
+
+
+    class MyDrawable extends Drawable {
+        Process prc;
+        int i;
+        Paint pnt;
+        Drawable drawable_map_1 = getResources().getDrawable(R.drawable.map_1);
+        Drawable drawable_map_check = getResources().getDrawable(R.drawable.map_check);
+        Drawable drawable_map_1_now = getResources().getDrawable(R.drawable.map_1_now);
+        boolean isCurrentMarker;
+
+        public MyDrawable(Process prc, int i, Paint pnt, boolean isCurrentMarker) {
+            this.prc = prc;
+            this.i = i;
+            this.pnt = pnt;
+            this.isCurrentMarker = isCurrentMarker;
+            drawable_map_1.setBounds(0, 0, drawable_map_1.getIntrinsicWidth(), drawable_map_1.getIntrinsicHeight());
+            drawable_map_check.setBounds(0, 0, drawable_map_check.getIntrinsicWidth(), drawable_map_check.getIntrinsicHeight());
+            drawable_map_1_now.setBounds(0, 0, drawable_map_check.getIntrinsicWidth(), drawable_map_check.getIntrinsicHeight());
+        }
+
+        @Override
+        public int getIntrinsicWidth() {
+            return 50;
+        }
+
+        @Override
+        public int getIntrinsicHeight() {
+            return 50;
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            if(isCurrentMarker == false){
+                switch (prc.getState()){
+                    case 0:
+                        drawable_map_1.draw(canvas);
+                        pnt.setTextSize(40.0f);
+                        canvas.drawText(Integer.toString(i+1), 20, 45, pnt);
+                        break;
+                    case 1:
+                        drawable_map_check.draw(canvas);
+                        break;
+                }
+            }else{
+                drawable_map_1_now.draw(canvas);
+                pnt.setTextSize(40.0f);
+                canvas.drawText(Integer.toString(i+1), 20, 45, pnt);
+            }
+        }
+        @Override
+        public void setAlpha(int alpha) {
+
+        }
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+
+        }
+        @Override
+        public int getOpacity() {
+            return 1;
+        }
     }
 }

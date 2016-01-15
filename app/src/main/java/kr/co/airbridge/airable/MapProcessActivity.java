@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,6 +47,8 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
     TextView toolbarTextview;
     @Bind(R.id.map_slide_map)
     MapView mapView;
+    @Bind(R.id.map_slide_search_button)
+    ImageButton searchButton;
 
     Fragment curFragment = new Fragment();
     int pageCount;
@@ -121,6 +124,9 @@ public class MapProcessActivity extends AppCompatActivity implements CurrentPosi
         // View pager 세팅
         pager.setAdapter(new adapter(getSupportFragmentManager()));
         pager.addOnPageChangeListener(new PageListener());
+
+        // Search button 비활성화
+        searchButton.setVisibility(View.INVISIBLE);
     }
 
     @OnClick(R.id.map_slide_search_button)
