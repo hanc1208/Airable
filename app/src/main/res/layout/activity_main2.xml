@@ -15,7 +15,7 @@
     <android.support.design.widget.CollapsingToolbarLayout
         android:id="@+id/collapsing_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:contentScrim="#ffffff"
         app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
@@ -27,25 +27,34 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
             android:background="#ffffff">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="260dp"
-            android:background="@drawable/bg_2">
+            android:background="@drawable/bg_2"
+            >
             <ImageView
                 android:id="@+id/main_menu"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/menu"/>
             <ImageView
                 android:id="@+id/main_map"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/spot_ic"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:focusableInTouchMode="true" />
             <ImageView
                 android:id="@+id/main_flight"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/flight_img_2"
@@ -104,7 +113,7 @@
                 <GridView
                     android:id="@+id/main_process_grid"
                     android:layout_width="match_parent"
-                    android:layout_height="276dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="27dp"
                     android:numColumns="4"
                     android:smoothScrollbar="true"
@@ -119,7 +128,9 @@
             android:id="@+id/anim_toolbar"
             android:layout_width="match_parent"
             android:layout_height="35.5dp"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:clickable="false"
+            android:focusable="false"/>
     </android.support.design.widget.CollapsingToolbarLayout>
 </android.support.design.widget.AppBarLayout>
             <android.support.v7.widget.RecyclerView

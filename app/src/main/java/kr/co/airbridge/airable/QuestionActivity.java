@@ -1,8 +1,10 @@
 package kr.co.airbridge.airable;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -50,6 +52,15 @@ public class QuestionActivity extends AppCompatActivity {
     @Bind(R.id.question_next)
     ImageView next;
 
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
+    private String flightId;
+    private String departureHour;
+    private String departureMinute;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +71,12 @@ public class QuestionActivity extends AppCompatActivity {
         ActivityUtility activityUtility = new ActivityUtility(this);
         activityUtility.setToolbar(R.id.toolbar);
         activityUtility.setNavigationAsBack();
+        toolbar.setNavigationIcon(R.drawable.back_key);
+        toolbar.setTitleTextColor(0xff40C4FF);
+        toolbar.setBackgroundColor(0x00000000);
         dbManager = new DBManager(this);
+        pref = getSharedPreferences("airable", MODE_PRIVATE);
+        editor = pref.edit();
 
         String json = "[{\"id\":1,\"content\":\"도심 공항 터미널을 거쳐 공항으로 오거나 Fasttrack 이용 대상자이십니까?\",\"nextWhenYes\":2,\"nextWhenNo\":2,\"nextWhenSkip\":-1}," +
                 "{\"id\":2,\"content\":\"무게 50kg 이상 또는 가로 45cm, 세로 90cm, 높이 70cm 이상의 짐을 가지고 가시나요?\",\"nextWhenYes\":3,\"nextWhenNo\":3,\"nextWhenSkip\":-1}," +
@@ -68,6 +84,16 @@ public class QuestionActivity extends AppCompatActivity {
         questions = new Gson().fromJson(json, new TypeToken<List<Question>>() {}.getType());
 
         setCurrentQuestion(questions.get(0));
+
+        Intent flightInfoIntent = getIntent();
+        flightId = flightInfoIntent.getStringExtra("flightId");
+        departureHour = flightInfoIntent.getStringExtra("departure_hour");
+        departureMinute = flightInfoIntent.getStringExtra("departure_minute");
+
+        editor.putString("flightId", flightId);
+        editor.putString("departure_hour", departureHour);
+        editor.putString("departure_minute", departureMinute);
+        editor.apply();
     }
 
     public void onDetailClick(View view) {

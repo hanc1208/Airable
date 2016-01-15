@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.facebook.FacebookSdk;
+
 public class SplashActivity extends Activity {
     SharedPreferences pref;
     String loginInfo;
@@ -16,6 +18,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
         pref = getSharedPreferences("airable", MODE_PRIVATE);
         loginInfo = pref.getString("login", "logout");
         haveFlightInfo = pref.getString("haveFlightInfo", "null");
