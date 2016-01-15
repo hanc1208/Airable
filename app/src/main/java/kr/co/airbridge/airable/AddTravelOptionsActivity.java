@@ -3,6 +3,7 @@ package kr.co.airbridge.airable;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Message;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +35,9 @@ public class AddTravelOptionsActivity extends AppCompatActivity {
 
     @Bind(R.id.next_btn)
     ImageView nextBtn;
+
+    @Bind(R.id.reset_btn)
+    TextView resetBtn;
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -72,6 +78,13 @@ public class AddTravelOptionsActivity extends AppCompatActivity {
         toolbar.setBackgroundColor(0x00000000);
 
         dbManager = new DBManager(context);
+
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbReset();
+            }
+        });
         ArrayList<Process> processList = dbManager.getProcessList();
         for (int i = 0; i < processList.size(); i++) {
             Process process = processList.get(i);
@@ -136,8 +149,9 @@ public class AddTravelOptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent boardingInfoIntent = getIntent();
                 Calendar cal = Calendar.getInstance();
-
-                Date boardingDate = new Date(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH)+1,cal.get(Calendar.DATE),00,10);
+                String hour = pref.getString("departure_hour", "9");
+                String minute = pref.getString("departure_minute", "00");
+                Date boardingDate = new Date(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH)+1,cal.get(Calendar.DATE),Integer.parseInt(hour),Integer.parseInt(minute));
                 boardingInfoIntent.putExtra("boardingTime", boardingDate.getTime());
                 setResult(RESULT_OK, boardingInfoIntent);
 
@@ -190,6 +204,36 @@ public class AddTravelOptionsActivity extends AppCompatActivity {
         });
     }
 
+    public void dbReset() {
+        for (int i = 0; i < 19; i++) {
+            dbManager.changeProcessState(1, Process.INCLUDE_PROCESS);
+            dbManager.changeProcessState(2, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(3, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(4, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(5, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(6, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(7, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(8, Process.INCLUDE_PROCESS);
+            dbManager.changeProcessState(9, Process.INCLUDE_PROCESS);
+            dbManager.changeProcessState(10, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(11, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(12, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(13, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(14, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(15, Process.INCLUDE_PROCESS);
+            dbManager.changeProcessState(16, Process.INCLUDE_PROCESS);
+            dbManager.changeProcessState(17, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(18, Process.EXCLUDE_PROCESS);
+            dbManager.changeProcessState(19, Process.INCLUDE_PROCESS);
+        }
+
+        editor.putString("login", "logout");
+        editor.putString("haveFlightInfo", "null");
+        editor.putString("username", "noname");
+        editor.apply();
+        Intent resetIntent = new Intent(getApplicationContext(), SplashActivity.class);
+        startActivity(resetIntent);
+    }
     class GridAdapter extends BaseAdapter {
         private Context context;
         private String[] cellText;
@@ -235,6 +279,8 @@ public class AddTravelOptionsActivity extends AppCompatActivity {
             return 0;
         }
     }
+
+
 
 }
 

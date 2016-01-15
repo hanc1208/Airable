@@ -3,6 +3,7 @@ package kr.co.airbridge.airable;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -54,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.main_expectedtime)
     TextView expectedTimeView;
 
+    @Bind(R.id.circle_flight)
+    TextView flightIdView;
+
     private ProcessGridAdapter gridAdapter;
     private RecyclerAdapter listAdapter;
     private List<RecycleItem> items;
@@ -65,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
     private DBManager dbManager;
     private ArrayList<Process> processList;
     private int expectedTime;
+    private int leftTimeCheck = -1;
+    private int progressSet;
+    private SharedPreferences pref;
+    private float n = 0;
 
     final int LEFTTIME_TEXTVIEW_CHANGE = 0;
     final int LEFTTIME_PROGRESS_CHANGE = 1;
@@ -79,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.ic_10_1, R.drawable.ic_4_1, R.drawable.ic_7_1, R.drawable.check_in_2, R.drawable.luggage_2,
             R.drawable.customs_2, R.drawable.ic_11_1, R.drawable.ic_6_1, R.drawable.ic_8_1, R.drawable.ic_9_1,
             R.drawable.security_2, R.drawable.screening_2, R.drawable.ic_13_1, R.drawable.ic_12_1, R.drawable.boarding_2};
-    int[] movingTime = {10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5};
+    int[] movingTime = {9, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +99,12 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.anim_toolbar);
-        toolbar.setTitle(leftTime);
+        toolbar.setTitle("Test");
         setSupportActionBar(toolbar);
-        timeCircleProgress.setProgress(35);
+        timeCircleProgress.setProgress(0);
+        pref = getSharedPreferences("airable", MODE_PRIVATE);
+        String flightId = pref.getString("flightId", "BA5405");
+        flightIdView.setText(flightId);
 
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -104,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         changeProcessList(processList);
 
         listAdapter = new RecyclerAdapter(this, items);
-        listAdapter.setHasStableIds(true);
         gridAdapter = new ProcessGridAdapter(this, items, cellImage1, cellImage2, movingTime);
         processListView.setClickable(false);
         processListView.setAdapter(listAdapter);
@@ -118,27 +130,35 @@ public class MainActivity extends AppCompatActivity {
                 if (msg != null) {
                     switch (msg.what) {
                         case LEFTTIME_TEXTVIEW_CHANGE:
+                            n = n + 1;
                             String leftTimeStr = (String) msg.obj;
-                            leftTimeTextView.setText("2h 31min");
+                            leftTimeTextView.setText(leftTimeStr);
+                            collapsingToolbarLayout.setTitle(leftTimeStr);
+                            timeCircleProgress.setProgress(n / 317 * 100);
+                            Log.d("progress", Float.toString(n/317*100));
+                            toolbar.setTitle(leftTimeStr);
+                            setSupportActionBar(toolbar);
+                            //timeCircleProgress.setProgress();
+
                             break;
                         case LEFTTIME_PROGRESS_CHANGE:
                             break;
                         case PROCESS_CHANGE:
+                            final int expectedTimeInt = (int)msg.obj;
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    processList.clear();
                                     processList = dbManager.getProcessList();
-                                    items.clear();
                                     items = changeProcessList(processList);
                                     listAdapter = new RecyclerAdapter(getApplicationContext(), items);
                                     processListView.setAdapter(listAdapter);
                                     gridAdapter = new ProcessGridAdapter(getApplicationContext(), items, cellImage1, cellImage2, movingTime);
                                     mainProcessGrid.setAdapter(gridAdapter);
-                                    int time = expectedTime/60;
-                                    int minute = expectedTime%60;
-                                    //expectedTimeView.setText("예상 소요시간은 " + time + "시간 " + minute + "분");
-
+                                    if (expectedTimeInt != -1) {
+                                        int time = expectedTimeInt / 60;
+                                        int minute = expectedTimeInt % 60;
+                                        expectedTimeView.setText("예상 소요시간은 " + time + "시간 " + minute + "분");
+                                    }
                                 }
                             });
                             break;
@@ -147,8 +167,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-
         };
+
+        Date currentTime = new Date(System.currentTimeMillis());
+        int currentHour = currentTime.getHours();
+        int currentMinute = currentTime.getMinutes();
+        int currentAllMinutes = currentHour*60 + currentMinute;
+        int boardingHour = Integer.parseInt(pref.getString("departure_hour", "9"));
+        int boardingMinutes = Integer.parseInt(pref.getString("departure_minute", "0"));
+        int boardingAllMinutes = boardingHour*60 + boardingMinutes;
+        int leftMinutes = boardingAllMinutes - currentAllMinutes;
+
+        if(leftTimeCheck == -1) {
+            progressSet = leftMinutes;
+            leftTimeCheck = 0;
+        }
+        leftTime = Integer.toString(leftMinutes/60) + "h "
+                + Integer.toString(leftMinutes%60) + "mins"; //시간변환
+
+        leftTimeTextView.setText(leftTime);
+        toolbar.setTitle(leftTime);
+        setSupportActionBar(toolbar);
+
     }
 
     public List<RecycleItem> changeProcessList(ArrayList<Process> processList) {
@@ -156,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < processList.size(); i++) {
             RecycleItem item = new RecycleItem();
             Process process = processList.get(i);
-            expectedTime  = 0;
 
             if (process.getState() == Process.INCLUDE_PROCESS || process.getState() == Process.PASSED_PROCESS) {
                 item.setTitle(process.getName());
@@ -166,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
                 item.setState(process.getState());
                 item.setProcessNum(process.getNo());
                 item.setVerexid(process.getVertexid());
-                expectedTime+= item.getTime();
 
                 items.add(item);
             }
@@ -185,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.main_flight)
     public void onMainFlightButtonClick() {
         Intent myAirActivityIntent = new Intent(getApplicationContext(), MyAirActivity.class);
-        //편명정보 보내기
+        myAirActivityIntent.putExtra("flightId", "");//flightId 넣기
         startActivity(myAirActivityIntent);
     }
 
@@ -223,19 +261,38 @@ public class MainActivity extends AppCompatActivity {
             holder.contentsLinear.setBackgroundResource(R.drawable.card_blue_bg2);
             holder.cardLine.setBackgroundColor(Color.parseColor("#263238"));
             holder.cardContent.setTextColor(Color.parseColor("#263238"));
+//            holder.cardContent.setOnClickListener(new View.OnClickListener(){
+//                @Override
+//                public void onClick(View v) {
+//                    Intent detailinfointent = new Intent(getApplicationContext(), ProcessInfoWebViewActivity.class);
+//                    detailinfointent.putExtra("processNum", item.getProcessNum());
+//                    startActivity(detailinfointent);
+//                }
+//            });
+
             holder.cardPlace.setTextColor(Color.parseColor("#263238"));
             holder.cardSpotIcon.setVisibility(View.VISIBLE);
             holder.cardMapButton.setVisibility(View.VISIBLE);
             holder.cardContent.setText(item.getContent());
             holder.cardPlace.setText(item.getPlace());
-            holder.cardMovingtime.setText(Integer.toString(movingTime[item.getProcessNum()-1]) + "분");
+            holder.cardMovingtime.setTextColor(Color.parseColor("#40C4FF"));
+            holder.cardMovingtime.setText(Integer.toString(movingTime[item.getProcessNum() - 1]) + "분");
             holder.cardNum.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     dbManager.changeProcessState(item.getProcessNum(), Process.PASSED_PROCESS);
                     Message stateChangeMsg = uiHandler.obtainMessage();
                     stateChangeMsg.what = PROCESS_CHANGE;
+                    stateChangeMsg.obj = -1;
                     uiHandler.sendMessage(stateChangeMsg);
+                }
+            });
+            holder.cardMapConnection.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent processMapIntent = new Intent(getApplicationContext(), MapProcessActivity.class);
+                    processMapIntent.putExtra("processNum", item.getProcessNum());
+                    startActivity(processMapIntent);
                 }
             });
             if (item.getState() == Process.PASSED_PROCESS) {
@@ -250,11 +307,12 @@ public class MainActivity extends AppCompatActivity {
                 holder.cardMapButton.setVisibility(View.GONE);
                 holder.cardMovingtime.setTextColor(Color.parseColor("#eceff1"));
             }
+            Log.d("info", position + " " + holder.getAdapterPosition());
         }
 
         @Override
         public int getItemCount() {
-            return this.items.size();
+            return items.size();
         }
 
         @Override
@@ -274,6 +332,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout titleLinear;
             LinearLayout contentsLinear;
             View cardLine;
+            RelativeLayout cardMapConnection;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -288,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
                 contentsLinear = (LinearLayout) itemView.findViewById(R.id.card_contents_bg);
                 cardLine = (View) itemView.findViewById(R.id.card_line);
                 cardMovingtime = (TextView) itemView.findViewById(R.id.card_movingtime);
+                cardMapConnection = (RelativeLayout) itemView.findViewById(R.id.card_map_connection);
             }
         }
     }
@@ -376,17 +436,26 @@ public class MainActivity extends AppCompatActivity {
                     final long boardingTimeMills = (long) data.getExtras().getLong("boardingTime");
                     Timer leftTimer = new Timer();
                     TimerTask leftTimeCalculator = new TimerTask() {
-                        Date leftTimeDate;
                         String leftTime;
 
                         @Override
                         public void run() {
                             Date currentTime = new Date(System.currentTimeMillis());
-                            long currentTimeMills = currentTime.getTime();
-                            long leftTimeMils = boardingTimeMills - currentTimeMills;
-                            leftTimeDate = new Date(leftTimeMils);
-                            leftTime = Integer.toString(leftTimeDate.getHours()) + "h "
-                                    + Integer.toString(leftTimeDate.getMinutes()) + "mins"; //시간변환
+                            int currentHour = currentTime.getHours();
+                            int currentMinute = currentTime.getMinutes();
+                            int currentAllMinutes = currentHour*60 + currentMinute;
+                            int boardingHour = Integer.parseInt(pref.getString("departure_hour", "9"));
+                            int boardingMinutes = Integer.parseInt(pref.getString("departure_minute", "0"));
+                            int boardingAllMinutes = boardingHour*60 + boardingMinutes;
+                            int leftMinutes = boardingAllMinutes - currentAllMinutes;
+
+                            if(leftTimeCheck == -1) {
+                                progressSet = leftMinutes;
+                                leftTimeCheck = 0;
+                            }
+                            leftTime = Integer.toString(leftMinutes/60) + "h "
+                                    + Integer.toString(leftMinutes%60) + "mins"; //시간변환
+                            Log.d("LeftTime", leftTime);
 
                             Message leftTimeMsg = uiHandler.obtainMessage();
                             leftTimeMsg.what = LEFTTIME_TEXTVIEW_CHANGE;
@@ -395,8 +464,19 @@ public class MainActivity extends AppCompatActivity {
                         }
                     };
 
+                    int expectedTime = 0;
+                    for(int i = 0; i < items.size(); i++) {
+                        RecycleItem item = items.get(i);
+
+                        if(item.getState() == Process.INCLUDE_PROCESS || item.getState() == Process.PASSED_PROCESS) {
+                            expectedTime += item.getTime();
+                            expectedTime += movingTime[item.getProcessNum()-1];
+                        }
+                    }
+
                     Message processChangeMsg = uiHandler.obtainMessage();
                     processChangeMsg.what = PROCESS_CHANGE;
+                    processChangeMsg.obj = expectedTime;
                     uiHandler.sendMessage(processChangeMsg);
                     leftTimer.schedule(leftTimeCalculator, 0, 3000);
                 }

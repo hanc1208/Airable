@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,8 +14,13 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,7 +32,7 @@ import retrofit.Retrofit;
 public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.login_user_email)
     EditText userEmail;
-    @Bind (R.id.login_user_password)
+    @Bind(R.id.login_user_password)
     EditText userPassword;
 
     LoginButton facebookLoginBtn;
@@ -48,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         ActivityUtility activityUtility = new ActivityUtility(this);
         activityUtility.setToolbar(R.id.toolbar);
         activityUtility.setNavigationAsBack();
-        Toolbar toolbar  = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.back_key);
         toolbar.setTitleTextColor(0xff40C4FF);
         toolbar.setBackgroundColor(0x00000000);
@@ -58,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         pref = getSharedPreferences("airable", MODE_PRIVATE);
         editor = pref.edit();
 
-        facebookLoginBtn = (LoginButton)findViewById(R.id.login_facebook_btn);
+        facebookLoginBtn = (LoginButton) findViewById(R.id.login_facebook_btn);
         facebookLoginBtn.setReadPermissions("user_friends");
         facebookLoginBtn.registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -66,29 +72,52 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(LoginResult loginResult) {
                         editor.putString("login", "login");
                         editor.apply();
-                        Intent startActivityIntent = new Intent(getApplicationContext(), StartActivity.class);
-                        startActivityIntent.putExtra("username", "facebook");
-                        startActivity(startActivityIntent);
+                        GraphRequest request = GraphRequest.newMeRequest(
+                                loginResult.getAccessToken(),
+                                new GraphRequest.GraphJSONObjectCallback() {
+                                    @Override
+                                    public void onCompleted(
+                                            JSONObject object,
+                                            GraphResponse response) {
+                                        // Application code
+                                        try {
+
+                                            String id = (String) response.getJSONObject().get("id");//페이스북 아이디값
+                                            String name = (String) response.getJSONObject().get("name");//페이스북 이름
+                                            String email = (String) response.getJSONObject().get("email");//이메일
+                                            Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+
+                                            Intent startActivityIntent = new Intent(getApplicationContext(), StartActivity.class);
+                                            startActivityIntent.putExtra("username", name);
+                                            startActivity(startActivityIntent);
+
+                                        } catch (JSONException e) {
+                                            // TODO Auto-generated catch block
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
                     }
 
-                    @Override
-                    public void onCancel() {
+                        @Override
+                        public void onCancel () {
 
+                        }
+
+                        @Override
+                        public void onError (FacebookException exception){
+
+                        }
                     }
 
-                    @Override
-                    public void onError(FacebookException exception) {
-
-                    }
+                    );
                 }
-        );
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
+        @Override
+        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+        }
 
     public void onEmailLoginClick(View view) {
         String email = userEmail.getText().toString();
