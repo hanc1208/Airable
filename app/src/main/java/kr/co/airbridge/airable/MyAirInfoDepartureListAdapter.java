@@ -101,12 +101,17 @@ public class MyAirInfoDepartureListAdapter extends BaseAdapter{
         mgate.setText(m_List.get(position).getGatenumber());
         mremark.setText(m_List.get(position).getRemark());
 
-        if(mtimechange.getText().toString().equals("")){
+       /* if(mtimechange.getText().toString().equals("")){
             View viewStroke = convertView.findViewById(R.id.my_air_info_list_stroke);
             viewStroke.setBackgroundColor(Color.parseColor("#00000000"));
             viewStroke.setVisibility(View.INVISIBLE);
+        }*/
+        if(mtime.getText().toString().equals(mtimechange.getText().toString())){
+            View viewStroke = convertView.findViewById(R.id.my_air_info_list_stroke);
+            viewStroke.setBackgroundColor(Color.parseColor("#00000000"));
+            viewStroke.setVisibility(View.INVISIBLE);
+            mtimechange.setVisibility(View.INVISIBLE);
         }
-
         /*
         // 버튼 이벤트 등록
         btn.setOnClickListener(new View.OnClickListener() {

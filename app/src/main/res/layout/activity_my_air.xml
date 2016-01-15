@@ -107,7 +107,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/my_air_info_departure_airport"
                                 android:text="@string/my_air_info_departure_airport"
-                                android:textSize="50sp"
+                                android:textSize="45sp"
                                 android:textColor="#40C4ff" />
                         </LinearLayout>
 
@@ -139,7 +139,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/my_air_info_arrival_airport"
                                 android:text="@string/my_air_info_arrival_airport"
-                                android:textSize="50sp"
+                                android:textSize="45sp"
                                 android:textColor="#40C4ff" />
                         </LinearLayout>
                     </LinearLayout>

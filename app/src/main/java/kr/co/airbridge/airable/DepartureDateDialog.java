@@ -53,52 +53,16 @@ public class DepartureDateDialog extends Dialog{
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), R.layout.tab_list_textview);
 
-        /*
-        long now = System.currentTimeMillis();
-        Date departure_date = new Date(now);
-        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy.MM.dd");
-        String strNow = sdfNow.format(departure_date);
 
-        Calendar calendar = Calendar.getInstance();
-
-        Integer dayNow = calendar.getTime().getDate();
-
-
-
-        Date date = calendar.getTime();
-        String week = new SimpleDateFormat("EE", Locale.KOREAN).format(date.getTime());
-
-        Log.i("date",week);
-
-
-        Log.i("strNow",strNow);
-
-        Log.i("dayNow",dayNow.toString());
-
-
-        */
-
-
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        calendar.set(Calendar.DAY_OF_WEEK,new Date().getDate() );
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd EE",Locale.KOREAN);
-
-        for(int i=0;i<7;i++){
-            Log.i("dateTag",simpleDateFormat.format(calendar.getTime()));
-            calendar.add(Calendar.DAY_OF_WEEK,1);
-        }
 
         // 아이템을 추가
-        adapter.add("item1");
-        adapter.add("item2");
-        adapter.add("item3");
-        adapter.add("item4");
-        adapter.add("item5");
-        adapter.add("item6");
-        adapter.add("item7");
-        adapter.add("item8");
-        adapter.add("item9");
+        adapter.add("2016.01.16.토");
+        adapter.add("2016.01.17.일");
+        adapter.add("2016.01.18.월");
+        adapter.add("2016.01.19.화");
+        adapter.add("2016.01.20.수");
+        adapter.add("2016.01.21.목");
+        adapter.add("2016.01.22.금");
 
         // ListView 가져오기
         ListView listView = (ListView) findViewById(R.id.departure_date_listview);

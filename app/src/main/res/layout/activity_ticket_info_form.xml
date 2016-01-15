@@ -111,7 +111,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp">
 
                 <LinearLayout
                     android:orientation="horizontal"

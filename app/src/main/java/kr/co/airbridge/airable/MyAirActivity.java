@@ -2,6 +2,7 @@ package kr.co.airbridge.airable;
 
 import android.app.LocalActivityManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,7 +14,7 @@ import java.util.Date;
 
 
 public class MyAirActivity extends AppCompatActivity {
-
+    private SharedPreferences pref;
     LocalActivityManager mLocalActivityManager;
 
     @Override
@@ -27,6 +28,30 @@ public class MyAirActivity extends AppCompatActivity {
         SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String strNow = sdfNow.format(date);
 
+        pref = getSharedPreferences("airable", MODE_PRIVATE);
+        String flight_name = pref.getString("flight_name","");
+        String checkin = pref.getString("checkin","");
+        String airline = pref.getString("airline","");
+        String gate = pref.getString("gate","");
+        String airport = pref.getString("airport","");
+        String airport_code = pref.getString("airport_code","");
+        String datetime = pref.getString("date","");
+
+        TextView arrival_airport_code = (TextView)findViewById(R.id.my_air_info_arrival_airport);
+        TextView arrival_airport = (TextView)findViewById(R.id.my_air_info_arrival_airport_text);
+        TextView datedate = (TextView)findViewById(R.id.my_air_info_date_time_text);
+        TextView ticket_num = (TextView)findViewById(R.id.my_air_info_ticket_num_text);
+        TextView check = (TextView)findViewById(R.id.my_air_info_checkin_text);
+        TextView gatenum = (TextView)findViewById(R.id.my_air_info_gate_text);
+        TextView airlinetext = (TextView)findViewById(R.id.my_air_info_airline_text);
+
+        arrival_airport_code.setText(airport_code);
+        arrival_airport.setText(airport);
+        datedate.setText(datetime);
+        ticket_num.setText(flight_name);
+        check.setText(checkin);
+        gatenum.setText(gate);
+        airlinetext.setText(airline);
 
 
         TextView textView = (TextView)findViewById(R.id.my_air_info_update_time_textview);

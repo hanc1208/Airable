@@ -73,7 +73,7 @@
     <string name="my_air_info_airline">항공사</string>
     <string name="my_air_info_airline_text">대한항공</string>
     <string name="my_air_info_gate">탑승구</string>
-    <string name="my_air_info_gate_text">41</string>S
+    <string name="my_air_info_gate_text">41</string>
     <string name="title_activity_search_air_info">항공 운항 정보 검색</string>
     <string name="departure_tab_date">날짜</string>
     <string name="departure_tab_air_num">편명</string>

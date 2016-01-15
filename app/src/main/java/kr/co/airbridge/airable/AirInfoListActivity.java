@@ -2,6 +2,7 @@ package kr.co.airbridge.airable;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,9 +24,18 @@ public class AirInfoListActivity extends AppCompatActivity {
     private ListView    m_ListView;
     private AirInfoListAdapter  m_Adapter;
     private ArrayList<AirListDepartingFlight> m_List;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+
+    DepartureSelect d;
+    ArrivalSelect a;
 
 
     RetrofitServer retrofitServer = new RetrofitServer(1);
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +55,14 @@ public class AirInfoListActivity extends AppCompatActivity {
 
 
 
+
+
+        pref = getSharedPreferences("airable", MODE_PRIVATE);
+        editor = pref.edit();
+
+
+
+
         m_List = new ArrayList<>();
 
         // 커스텀 어댑터 생성
@@ -58,11 +76,35 @@ public class AirInfoListActivity extends AppCompatActivity {
 
 
 
+
+
         Intent intent = getIntent();
 
         int requestCode = (int)intent.getIntExtra("requestCode", -1);
 
+        if (requestCode == 0 ) {
+
+            d = (DepartureSelect)intent.getSerializableExtra("departure");
+            Log.i("departure","departure");
+            if(!d.s_date.equals("")&&!d.s_city.equals("")){
+                getSupportActionBar().setTitle(d.s_date + " / " + d.s_city);
+            } else if(d.s_date.equals("")&&!d.s_city.equals("")){
+                getSupportActionBar().setTitle(d.s_city);
+            }
+
+        } else if(requestCode == 1) {
+
+            a = (ArrivalSelect)intent.getSerializableExtra("arrival");
+            if(!a.s_date.equals("")&&!a.s_city.equals("")){
+                getSupportActionBar().setTitle(a.s_date + " / " + a.s_city);
+            } else if(a.s_date.equals("")&&!a.s_city.equals("")){
+                getSupportActionBar().setTitle(a.s_city);
+            }
+
+        }
+
         String airportCode = intent.getStringExtra("departure_airport_code");
+        Log.i("test", airportCode);
 
         retrofitServer.postDepartureFlightList(airportCode).enqueue(new Callback<DepartureFlightResponse>() {
             @Override
@@ -81,14 +123,14 @@ public class AirInfoListActivity extends AppCompatActivity {
                                                             대표적으로 remark 같은 경우는 출발까지 시간이 오래 남은 항공편의 경우 제공 안됨.
 */
                 try{ // try catch 안하면 뭐라고 시비걸어서 넣기는 넣었는데 왜 넣었는진 잘 모르겠다.. items가 null일 수도 있어서 그런것 같음;; 걍 넣어줭 :D
-
                     for(DepartureFlight df : response.body().getBody().items) {//// 전체 목록에서 DepartureFlight 오브젝트를 하나씩 뽑아와서 뿌려줌
+                        Log.i("test", "Response22");
                         String time = df.getScheduleDataTime();
-                        String year = time.substring(2,4);
-                        String month = time.substring(4,6);
-                        String date = time.substring(6,8);
-                        String hour = time.substring(8,10);
-                        String min = time.substring(10,12);
+                        String year = time.substring(2, 4);
+                        String month = time.substring(4, 6);
+                        String date = time.substring(6, 8);
+                        String hour = time.substring(8, 10);
+                        String min = time.substring(10, 12);
 
                         String c_time = df.getScheduleDataTime();
                         String c_year = time.substring(2, 4);
@@ -97,11 +139,32 @@ public class AirInfoListActivity extends AppCompatActivity {
                         String c_hour = time.substring(8, 10);
                         String c_min = time.substring(10,12);
 
+                       // String d_date = d.s_date.substring(0,10);
+                       // String fullyear = time.substring(0,4);
 
 
+                        Log.i("ticket", "DF FI"+df.getFlightId());
 
-                        AirListDepartingFlight tempItem = new AirListDepartingFlight(hour+" : "+min,c_hour+" : "+c_min,df.getFlightId(),df.getAirline(),df.getAirport(),df.getChkinrange(),df.getGatenumber(),df.getAirportCode(),df.getScheduleDataTime());
-                        m_List.add(tempItem);
+
+                        AirListDepartingFlight tempItem = new AirListDepartingFlight(hour+" : "+min,c_hour+" : "+c_min,df.getAirport(),df.getFlightId(),df.getAirline(),df.getChkinrange(),df.getGatenumber(),df.getAirportCode(),df.getScheduleDataTime());
+                        editor.putString("date","20"+year+"."+month+"."+date+" "+hour+":"+min);
+                        editor.putString("flight_name",df.getFlightId());
+                        editor.putString("checkin",df.getChkinrange());
+                        editor.putString("airline",df.getAirline());
+                        editor.putString("gate",df.getGatenumber());
+                        editor.putString("airport", df.getAirport());
+                        editor.putString("airport_code", df.getAirportCode());
+                        editor.apply();
+
+                        boolean checkDate = !d.s_date.equals("");
+                        boolean checkFlightId = !d.s_ticketnum.equals("");
+                        boolean checkAirline = !d.s_airline.equals("");
+
+                        if((!checkDate || d.s_date.equals("20"+year+"."+month+"."+date)) && (!checkFlightId || d.s_ticketnum.equals(df.getFlightId())) && (!checkAirline || d.s_airline.equals(df.getAirline())))
+                            m_List.add(tempItem);
+
+
+                       // m_List.add(tempItem);
                         Log.i("list", df.getAirportCode());
                     }
                     m_Adapter.notifyDataSetChanged();
@@ -113,31 +176,11 @@ public class AirInfoListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 // resultTextView.setText(t.getMessage()); <------- 에러 메시지 출력
-                // Log.i("mytag", "API Failure");
+                Log.i("mytag", "API Failure");
             }
         });
 
-        if (requestCode == 0 ) {
-            DepartureSelect d = (DepartureSelect)intent.getSerializableExtra("departure");
 
-
-            if(!d.s_date.equals("")&&!d.s_city.equals("")){
-                getSupportActionBar().setTitle(d.s_date + " / " + d.s_city);
-            } else if(d.s_date.equals("")&&!d.s_city.equals("")){
-                getSupportActionBar().setTitle(d.s_city);
-            }
-
-        } else if(requestCode == 1) {
-            ArrivalSelect a = (ArrivalSelect)intent.getSerializableExtra("arrival");
-
-
-            if(!a.s_date.equals("")&&!a.s_city.equals("")){
-                getSupportActionBar().setTitle(a.s_date + " / " + a.s_city);
-            } else if(a.s_date.equals("")&&!a.s_city.equals("")){
-                getSupportActionBar().setTitle(a.s_city);
-            }
-
-        }
 
 
         // 아이템을 [클릭]시의 이벤트 리스너를 등록
@@ -147,12 +190,12 @@ public class AirInfoListActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(AirInfoListActivity.this, TicketInfoActivity.class);
 
-                intent.putExtra("ticket_number",((AirListDepartingFlight)(parent.getAdapter().getItem(position))).getFlightId());
-                intent.putExtra("arrival_city",((AirListDepartingFlight)(parent.getAdapter().getItem(position))).getAirport_code());
-                intent.putExtra("arrival_city_ko",((AirListDepartingFlight)(parent.getAdapter().getItem(position))).getAirline());
-                intent.putExtra("departure_date",((AirListDepartingFlight)(parent.getAdapter().getItem(position))).getRawdate());
-                intent.putExtra("departure_check",((AirListDepartingFlight)(parent.getAdapter().getItem(position))).getChkinrange());
-                intent.putExtra("departure_gate",((AirListDepartingFlight)(parent.getAdapter().getItem(position))).getGatenumber());
+                intent.putExtra("ticket_number", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getFlightId());
+                intent.putExtra("arrival_city", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getAirport_code());
+                intent.putExtra("arrival_city_ko", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getAirline());
+                intent.putExtra("departure_date", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getRawdate());
+                intent.putExtra("departure_check", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getChkinrange());
+                intent.putExtra("departure_gate", ((AirListDepartingFlight) (parent.getAdapter().getItem(position))).getGatenumber());
 
 
                 startActivity(intent);
