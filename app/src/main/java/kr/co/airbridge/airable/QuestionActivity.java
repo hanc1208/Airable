@@ -213,5 +213,6 @@ public class QuestionActivity extends AppCompatActivity {
         no.setActivated(currentQuestion.getAnswer() == Question.Answer.NO);
         skip.setVisibility(currentQuestion.getAnswer() == null ? View.VISIBLE : View.GONE);
         next.setVisibility(currentQuestion.getAnswer() == null ? View.GONE : View.VISIBLE);
+        next.setActivated(currentQuestion.getAnswer() != null);
     }
 }
