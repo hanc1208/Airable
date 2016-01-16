@@ -114,6 +114,7 @@
                     android:id="@+id/main_process_grid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="260dp"
                     android:layout_marginBottom="27dp"
                     android:numColumns="4"
                     android:smoothScrollbar="true"

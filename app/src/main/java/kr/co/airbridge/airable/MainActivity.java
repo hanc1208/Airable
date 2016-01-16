@@ -374,37 +374,38 @@ public class MainActivity extends AppCompatActivity {
 
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.layout_main_process_grid, null);
-                TextView processName = (TextView) convertView.findViewById(R.id.main_process_grid_text);
-                ImageView processLogo = (ImageView) convertView.findViewById(R.id.main_process_grid_image);
-                TextView processTime = (TextView) convertView.findViewById(R.id.main_process_grid_time);
-                TextView processMovingTime = (TextView) convertView.findViewById(R.id.main_process_grid_movingtime);
-                ImageView processFlow = (ImageView) convertView.findViewById(R.id.main_process_grid_arrow);
+            }
 
-                if (item.getState() == Process.INCLUDE_PROCESS) {
-                    processLogo.setImageResource(cellImage1[item.getProcessNum() - 1]);
-                    processFlow.setImageResource(R.drawable.flow_1);
-                    processName.setText(item.getTitle());
-                    processName.setTextColor(Color.parseColor("#575757"));
-                    processTime.setText(Integer.toString(item.getTime()) + "분");
-                    processTime.setTextColor(Color.parseColor("#575757"));
-                    processMovingTime.setText(Integer.toString(movingTime[position])+"분");
-                    expectedTime+= movingTime[position];
-                    processMovingTime.setTextColor(Color.parseColor("#575757"));
-                } else if (item.getState() == Process.PASSED_PROCESS) {
-                    processLogo.setImageResource(cellImage2[item.getProcessNum() - 1]);
-                    processFlow.setImageResource(R.drawable.flow_2);
-                    processName.setText(item.getTitle());
-                    processName.setTextColor(Color.parseColor("#eceff1"));
-                    processTime.setText(Integer.toString(item.getTime()) + "분");
-                    processTime.setTextColor(Color.parseColor("#eceff1"));
-                    processMovingTime.setText(Integer.toString(movingTime[position])+"분");
-                    processMovingTime.setTextColor(Color.parseColor("#eceff1"));
-                }
+            TextView processName = (TextView) convertView.findViewById(R.id.main_process_grid_text);
+            ImageView processLogo = (ImageView) convertView.findViewById(R.id.main_process_grid_image);
+            TextView processTime = (TextView) convertView.findViewById(R.id.main_process_grid_time);
+            TextView processMovingTime = (TextView) convertView.findViewById(R.id.main_process_grid_movingtime);
+            ImageView processFlow = (ImageView) convertView.findViewById(R.id.main_process_grid_arrow);
 
-                if (position == items.size() - 1) {
-                    convertView.findViewById(R.id.main_process_grid_arrow).setVisibility(View.GONE);
-                    convertView.findViewById(R.id.main_process_grid_movingtime).setVisibility(View.GONE);
-                }
+            if (item.getState() == Process.INCLUDE_PROCESS) {
+                processLogo.setImageResource(cellImage1[item.getProcessNum() - 1]);
+                processFlow.setImageResource(R.drawable.flow_1);
+                processName.setText(item.getTitle());
+                processName.setTextColor(Color.parseColor("#575757"));
+                processTime.setText(Integer.toString(item.getTime()) + "분");
+                processTime.setTextColor(Color.parseColor("#575757"));
+                processMovingTime.setText(Integer.toString(movingTime[position])+"분");
+                expectedTime+= movingTime[position];
+                processMovingTime.setTextColor(Color.parseColor("#575757"));
+            } else if (item.getState() == Process.PASSED_PROCESS) {
+                processLogo.setImageResource(cellImage2[item.getProcessNum() - 1]);
+                processFlow.setImageResource(R.drawable.flow_2);
+                processName.setText(item.getTitle());
+                processName.setTextColor(Color.parseColor("#eceff1"));
+                processTime.setText(Integer.toString(item.getTime()) + "분");
+                processTime.setTextColor(Color.parseColor("#eceff1"));
+                processMovingTime.setText(Integer.toString(movingTime[position])+"분");
+                processMovingTime.setTextColor(Color.parseColor("#eceff1"));
+            }
+
+            if (position == items.size() - 1) {
+                convertView.findViewById(R.id.main_process_grid_arrow).setVisibility(View.GONE);
+                convertView.findViewById(R.id.main_process_grid_movingtime).setVisibility(View.GONE);
             }
 
             return convertView;
