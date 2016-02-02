@@ -64,6 +64,15 @@ public class CurrentPositionReceiver implements WifiBroadcastReceiver.WifiBroadc
             }
         }
 
+        int random = new Random().nextInt(10);
+        if (random <= 6) {
+            expectedVertex = map.getVertexes()[0];
+        } else if (random <= 8) {
+            expectedVertex = map.getVertexes()[1];
+        } else {
+            expectedVertex = map.getVertexes()[2];
+        }
+
         if (expectedVertex != null) {
             currentPositionListener.onReceive(new Point(expectedVertex.getX(), expectedVertex.getY()));
         }
