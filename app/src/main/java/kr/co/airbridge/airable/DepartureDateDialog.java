@@ -15,6 +15,7 @@ import android.widget.ListView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import butterknife.Bind;
@@ -56,13 +57,15 @@ public class DepartureDateDialog extends Dialog{
 
 
         // 아이템을 추가
-        adapter.add("2016.01.16.토");
-        adapter.add("2016.01.17.일");
-        adapter.add("2016.01.18.월");
-        adapter.add("2016.01.19.화");
-        adapter.add("2016.01.20.수");
-        adapter.add("2016.01.21.목");
-        adapter.add("2016.01.22.금");
+        GregorianCalendar gc = new GregorianCalendar(Locale.KOREA);
+        gc.setTime(new Date());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd.E", Locale.KOREAN);
+
+        for(int i = 0; i < 7; i++){
+            String DateToStr = format.format(gc.getTime());
+            gc.add(GregorianCalendar.DATE, 1);
+            adapter.add(DateToStr);
+        }
 
         // ListView 가져오기
         ListView listView = (ListView) findViewById(R.id.departure_date_listview);
